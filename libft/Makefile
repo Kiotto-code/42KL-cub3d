@@ -1,13 +1,15 @@
 NAME	:= libft.a
+DEBUG	:= debugrun
 CC		:= gcc
 AR		:= ar
 CFLAGS	:= -Wall -Werror -Wextra
 CFLAGS	= -fsanitize=address -g3 -static-libsan
 ARFLAGS	:= rcs
 RM		:= rm -rf
-DEBUG	:= ${ARGS}
+# DEBUG	:= ${ARGS}
 
-INCLUDES	:= ./includes
+INCLUDES	= ./includes
+# INCLUDES	+= includes
 SRC_PATH	:= ./srcs/**
 OBJ_PATH	:= ./obj
 
@@ -20,14 +22,14 @@ OBJS	= $(patsubst %.c,$(OBJ_PATH)/%.o,$(notdir $(SRCS)))
 
 # all:		${OBJS_PATH} ${NAME}
 all			:	${NAME}
-debug		:	debug
+debug		:	${DEBUG}
 
 ${NAME}:	${OBJS}
 			${AR} ${ARFLAGS} $@ $^
 
 ${OBJ_PATH}/%.o:	${SRC_PATH}/%.c* ./Makefile ./includes/*.h
 					mkdir -p ${@D}
-					${CC} ${CFLAGS} -I${INCLUDES} -c $< -o $@
+					${CC} -I{INCLUDES} ${CFLAGS} -c $< -o $@
 
 # ${OBJ_PATH}:
 # 				mkdir -p ${OBJ_PATH}
@@ -37,11 +39,16 @@ clean:
 
 fclean:		clean
 			${RM} ${NAME}
+			${RM} ./debug 
 
 re:			fclean all
 
-debug:		${OBJS}
-			${CC} ${CFLAGS} libft.a ./main.c $^ -o ./debug 
+${DEBUG}:	${OBJS}
+			${CC} ${CFLAGS} ./main.c $(OBJS) -o $(DEBUG)
+
+
+# ${CC} ${CFLAGS} $< ./main.c  -o ./debug 
+
 # debug:		${OBJS}
 # 			${CC} libft.a ./main.c $^ -o ./debug 
 

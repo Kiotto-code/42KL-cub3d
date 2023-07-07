@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:42:47 by yichan            #+#    #+#             */
-/*   Updated: 2023/07/08 00:59:10 by yichan           ###   ########.fr       */
+/*   Updated: 2023/06/02 21:44:09 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <stdio.h>
-# include "includes/ft_printf.h"
+# include "ft_printf.h"
 
 typedef struct s_stk
 {
