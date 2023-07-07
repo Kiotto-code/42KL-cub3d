@@ -18,7 +18,9 @@ SRCS	:= ${wildcard ${SRC_PATH}/*.c}
 OBJS	= $(patsubst %.c,$(OBJ_PATH)/%.o,$(notdir $(SRCS)))
 # OBJS	= $(patsubst $(SRC_PATH)%.c,$(OBJ_PATH)/%.o,$(SRCS))
 
-all:		${OBJS_PATH} ${NAME}
+# all:		${OBJS_PATH} ${NAME}
+all			:	${NAME}
+debug		:	debug
 
 ${NAME}:	${OBJS}
 			${AR} ${ARFLAGS} $@ $^
@@ -30,7 +32,7 @@ ${OBJ_PATH}/%.o:	${SRC_PATH}/%.c* ./Makefile ./includes/*.h
 # ${OBJ_PATH}:
 # 				mkdir -p ${OBJ_PATH}
 
-clean:
+clean:		
 			${RM} ${OBJ_PATH}
 
 fclean:		clean
@@ -39,7 +41,9 @@ fclean:		clean
 re:			fclean all
 
 debug:		${OBJS}
-			${CC} ${CFLAGS} ${CSAN} -I${INCLUDES} ./main.c $^ -o ./debug 
+			${CC} ${CFLAGS} libft.a ./main.c $^ -o ./debug 
+# debug:		${OBJS}
+# 			${CC} libft.a ./main.c $^ -o ./debug 
 
 # gcc -fsanitize=address -g3 ./libft.a ${ARGS}
 # make ${NAME} ${ARGS}
