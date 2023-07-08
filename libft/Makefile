@@ -9,16 +9,25 @@ RM		:= rm -rf
 # DEBUG	:= ${ARGS}
 
 INCLUDES	= ./includes
-# INCLUDES	+= includes
 SRC_PATH	:= ./srcs/**
 OBJ_PATH	:= ./obj
+
+# UNAME := $(shell uname)
+# ifeq ($(UNAME), Linux)
+# 	MLXFLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
+# 	MLXFLAGS2	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
+# endif
+# ifeq ($(UNAME), Darwin)
+# 	MLXFLAGS	= -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -Imlx
+# 	MLXFLAGS2	=
+# endif
 
 SRCS	:= ${wildcard ${SRC_PATH}/*.c}
 # OBJS	= ${patsubst srcs/libft/%.c, ${OBJ_PATH}/%.o, ${SRCS}}
 # OBJS	= ${patsubst srcs/printf/%.c, ${OBJ_PATH}/%.o, ${SRCS}}
 # OBJS	:= ${addprefix ${OBJ_PATH}/, ${addsuffix .o, ${notdir ${basename ${SRCS}}}}}
 OBJS	= $(patsubst %.c,$(OBJ_PATH)/%.o,$(notdir $(SRCS)))
-# OBJS	= $(patsubst $(SRC_PATH)%.c,$(OBJ_PATH)/%.o,$(SRCS))
+# OBJS	= $(patsubst $(SRC_PATH)%.c,$(OBJ_PATH)/%.o,$(SRCS)）
 
 # all:		${OBJS_PATH} ${NAME}
 all			:	${NAME}
@@ -39,12 +48,13 @@ clean:
 
 fclean:		clean
 			${RM} ${NAME}
-			${RM} ./debug 
+			${RM} ${DEBUG}
 
-re:			fclean all
+re:			fclean all debug
 
 ${DEBUG}:	${OBJS}
-			${CC} ${CFLAGS} ./main.c $(OBJS) -o $(DEBUG)
+			${CC} ${CFLAGS} main.c $(OBJS) -I${INCLUDES} -o $(DEBUG)
+# ${CC} ${CFLAGS} main.c $(OBJS) -I$(INCLUDES) -o $(DEBUG)
 
 
 # ${CC} ${CFLAGS} $< ./main.c  -o ./debug 
