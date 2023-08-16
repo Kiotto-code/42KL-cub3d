@@ -21,11 +21,11 @@ int	mlx_destroy_image(t_xvar *xvar, t_img *img)
       shmdt(img->shm.shmaddr);
       /* shmctl IPC_RMID already done */
     }
-  XDestroyImage(img->image);  /* For image & shm-image. Also free img->data */
+  XDestroyImage(img->image);  /* For image & shm-image. Also ft_free img->data */
   XFreePixmap(xvar->display, img->pix);
   if (img->gc)
     XFreeGC(xvar->display, img->gc);
-  free(img);
+  ft_free(img);
   if (xvar->do_flush)
     XFlush(xvar->display);
 }

@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 21:34:32 by yichan            #+#    #+#             */
-/*   Updated: 2023/05/24 22:23:27 by yichan           ###   ########.fr       */
+/*   Updated: 2023/08/16 03:39:24 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static char	**ft_recursivesplit(const char *s, int row, char separator)
 
 char	**ft_split(const char *s, char c)
 {
-	if (!s)
+	if (!s || !c)
 		return (0);
 	while (*s && *s == c)
 		s++;
@@ -106,4 +106,3 @@ char	**ft_split(const char *s, char c)
 		return (ft_calloc(0));
 	return (ft_recursivesplit(s, 0, c));
 }
-// **/

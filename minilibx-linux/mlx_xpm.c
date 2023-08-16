@@ -14,10 +14,10 @@
 extern struct s_col_name mlx_col_name[];
 
 
-#define	RETURN	{ if (colors) free(colors); if (tab) free(tab); \
-		tab = (void *)0; if (colors_direct) free(colors_direct); \
+#define	RETURN	{ if (colors) ft_free(colors); if (tab) ft_free(tab); \
+		tab = (void *)0; if (colors_direct) ft_free(colors_direct); \
 		if (img) {XDestroyImage(img->image); \
-				XFreePixmap(xvar->display,img->pix);free(img);} \
+				XFreePixmap(xvar->display,img->pix);ft_free(img);} \
 		return ((void *)0);}
 
 
@@ -70,7 +70,7 @@ char	*mlx_int_static_line(char **xpm_data,int *pos,int size)
 	if ((len2 = strlen(str))>len)
 	{
 			if (copy)
-					free(copy);
+					ft_free(copy);
 			if (!(copy = malloc(len2+1)))
 					return ((char *)0);
 			len = len2;
@@ -167,7 +167,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 						!(height = atoi(tab[1])) || !(nc = atoi(tab[2])) ||
 						!(cpp = atoi(tab[3])) )
 				RETURN;
-		free(tab);
+		ft_free(tab);
 		tab = 0;
 
 		method = 0;
@@ -214,7 +214,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 						colors[i].name = mlx_int_get_col_name(line,cpp);
 						colors[i].col = rgb_col; //rgb_col>=0?mlx_get_color_value(xvar,rgb_col):rgb_col;
 				}
-				free(tab);
+				ft_free(tab);
 				tab = (void *)0;
 		}
 
@@ -280,9 +280,9 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 		}
 		*/
 		if (colors)
-				free(colors);
+				ft_free(colors);
 		if (colors_direct)
-				free(colors_direct);
+				ft_free(colors_direct);
 		return (img);
 }
 

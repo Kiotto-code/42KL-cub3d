@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 21:55:44 by yichan            #+#    #+#             */
-/*   Updated: 2023/03/07 02:32:53 by yichan           ###   ########.fr       */
+/*   Updated: 2023/08/16 04:17:18 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	*ft_strjoinf(char *s1, char const *s2)
 	i = 0;
 	j = 0;
 	if (!s1 || !s2)
-		return (NULL);
-	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) +1));
+		return (s1);
+	res = ft_calloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) +1));
 	if (!res)
 		return (NULL);
 	while (s1[i])

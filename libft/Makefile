@@ -22,7 +22,7 @@ OBJ_PATH	:= ./obj
 # 	MLXFLAGS2	=
 # endif
 
-SRCS	:= ${wildcard ${SRC_PATH}/*.c}
+SRCS	:= ${wildcard ${SRC_PATH}/ft_*.c}
 # OBJS	= ${patsubst srcs/libft/%.c, ${OBJ_PATH}/%.o, ${SRCS}}
 # OBJS	= ${patsubst srcs/printf/%.c, ${OBJ_PATH}/%.o, ${SRCS}}
 # OBJS	:= ${addprefix ${OBJ_PATH}/, ${addsuffix .o, ${notdir ${basename ${SRCS}}}}}
@@ -38,10 +38,7 @@ ${NAME}:	${OBJS}
 
 ${OBJ_PATH}/%.o:	${SRC_PATH}/%.c* ./Makefile ./includes/*.h
 					mkdir -p ${@D}
-					${CC} -I{INCLUDES} ${CFLAGS} -c $< -o $@
-
-# ${OBJ_PATH}:
-# 				mkdir -p ${OBJ_PATH}
+					${CC} ${CFLAGS} -I{INCLUDES} ${CFLAGS} -c $< -o $@
 
 clean:		
 			${RM} ${OBJ_PATH}
@@ -50,21 +47,14 @@ fclean:		clean
 			${RM} ${NAME}
 			${RM} ${DEBUG}
 
-re:			fclean all debug
+re:			fclean all
 
-${DEBUG}:	${OBJS}
-			${CC} ${CFLAGS} main.c $(OBJS) -I${INCLUDES} -o $(DEBUG)
-# ${CC} ${CFLAGS} main.c $(OBJS) -I$(INCLUDES) -o $(DEBUG)
+cleanbug:	
+			${RM} ${DEBUG}
 
+redebug:	cleanbug debug
 
-# ${CC} ${CFLAGS} $< ./main.c  -o ./debug 
-
-# debug:		${OBJS}
-# 			${CC} libft.a ./main.c $^ -o ./debug 
-
-# gcc -fsanitize=address -g3 ./libft.a ${ARGS}
-# make ${NAME} ${ARGS}
-
-# debug:		make ${NAME} main.c
+${DEBUG}:	${OBJS} main.c
+			$(CC) $(CFLAGS) $(CSAN) -I$(INCLUDES) $^ -o $@
 
 .PHONY:		all clean fclean re debug

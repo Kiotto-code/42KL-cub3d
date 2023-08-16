@@ -47,7 +47,7 @@ void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)
 			       format,img->data,&(img->shm),width,height);
   if (!img->image)
     {
-      free(img);
+      ft_free(img);
       return ((void *)0);
     }
   img->width = width;
@@ -59,7 +59,7 @@ void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)
   if (img->shm.shmid==-1)
     {
       XDestroyImage(img->image);
-      free(img);
+      ft_free(img);
       return ((void *)0);
     }
   img->data = img->shm.shmaddr = img->image->data = shmat(img->shm.shmid,0,0);
@@ -67,7 +67,7 @@ void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)
     {
       shmctl(img->shm.shmid,IPC_RMID,0);
       XDestroyImage(img->image);
-      free(img);
+      ft_free(img);
       return ((void *)0);
     }
   img->shm.readOnly = False;
@@ -80,7 +80,7 @@ void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)
       shmdt(img->data);
       shmctl(img->shm.shmid,IPC_RMID,0);
       XDestroyImage(img->image);
-      free(img);
+      ft_free(img);
       return ((void *)0);
     }
   XSetErrorHandler(save_handler);
@@ -112,7 +112,7 @@ void	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format)
     return ((void *)0);
   if (!(img->data = malloc((width+32)*height*4)))
   {
-    free(img);
+    ft_free(img);
     return ((void *)0);
   }
   bzero(img->data,(width+32)*height*4);
@@ -120,8 +120,8 @@ void	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format)
 			    img->data,width,height,32,0);
   if (!img->image)
     {
-      free(img->data);
-      free(img);
+      ft_free(img->data);
+      ft_free(img);
       return ((void *)0);
     }
   img->gc = 0;

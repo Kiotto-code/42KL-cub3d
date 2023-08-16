@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:42:47 by yichan            #+#    #+#             */
-/*   Updated: 2023/06/02 21:44:09 by yichan           ###   ########.fr       */
+/*   Updated: 2023/08/16 03:36:29 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <stdio.h>
-# include "ft_printf.h"
+# include "color.h"
 
 typedef struct s_stk
 {
@@ -86,21 +86,23 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-size_t		ft_max(int a, int b);
+int		ft_max(int a, int b);
 void	ft_error(char *str, int stat);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*get_next_line(int fd);
 char	*ft_strend(char *str, int n);
 char	*ft_strjoinf(char *s1, char const*s2);
 char	*ft_strjoin_con(char const *s1, char *connector, char const *s2);
-int		ft_arrind(char **arr);
+int		ft_arrlen(char **arr);
 char	**ft_duparr(char **env);
 int		ft_arr2lst(t_list **lst, char **arr, \
 			void (*add_back)(t_list **lst, t_list *new));
-void   ft_replace(char **s, const char *old, const char *new);
+void	ft_replace(char **s, const char *old, const char *new, int start);
 size_t	ft_strcpy(char *dst, const char *src);
-char	*ft_transf(char *old, char *new);
+void	ft_strswitch(char **old, char *new);
 int		ft_strlead(const char *s1, const char *s2);
-void   ft_replace(char **s, const char *old, const char *new);
+int		ft_free(void *memory);
+int		ft_is_all_space(char *str);
+
 
 #endif

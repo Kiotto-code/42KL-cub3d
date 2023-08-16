@@ -21,7 +21,7 @@ void	*mlx_init()
 		return ((void*)0);
 	if ((xvar->display = XOpenDisplay("")) == 0)
 	{
-		free(xvar);
+		ft_free(xvar);
 		return ((void*)0);
 	}
 	xvar->screen = DefaultScreen(xvar->display);

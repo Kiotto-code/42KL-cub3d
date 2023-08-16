@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:23:47 by yichan            #+#    #+#             */
-/*   Updated: 2023/03/04 22:38:25 by yichan           ###   ########.fr       */
+/*   Updated: 2023/08/16 03:19:21 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ char	*gnl_readline(int fd, char *str)
 		r_ret = read(fd, buff, BUFFER_SIZE);
 		if (r_ret == -1)
 		{
-			free(buff);
+			ft_free(buff);
 			return (NULL);
 		}
 		buff[r_ret] = '\0';
 		str = joinfree(str, buff);
 	}
-	free(buff);
+	ft_free(buff);
 	return (str);
 }
 
@@ -70,7 +70,7 @@ char	*remain(char *str)
 		c_len++;
 	if (!str[c_len])
 	{
-		free(str);
+		ft_free(str);
 		return (NULL);
 	}
 	ret = malloc(sizeof(char) * (ft_strlen2(str) - c_len + 1));
@@ -79,7 +79,7 @@ char	*remain(char *str)
 	while (str[c_len])
 		ret[i++] = str[c_len++];
 	ret[i] = '\0';
-	free(str);
+	ft_free(str);
 	return (ret);
 }
 

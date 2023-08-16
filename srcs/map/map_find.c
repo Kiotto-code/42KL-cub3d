@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_find.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/08 19:32:35 by yichan            #+#    #+#             */
+/*   Updated: 2023/08/16 05:04:25 by yichan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	map_find(t_book *record)
+{
+	const char	*order[7] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
+	char		**content;
+	int			i;
+
+	content = record->file_content;
+	i = 0;
+	while (*content)
+	{
+		printf("check: %s\n", *content);
+		if (!(ft_strlead(*content, order[i]) || ft_is_all_space(*content)))
+			return (1);
+		i++;
+		if (order[i] == NULL)
+			break ;
+		content++;
+	}
+	record->map = ft_duparr(content);
+	return (0);
+}

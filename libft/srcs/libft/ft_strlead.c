@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:58:05 by yichan            #+#    #+#             */
-/*   Updated: 2023/05/24 22:29:42 by yichan           ###   ########.fr       */
+/*   Updated: 2023/08/16 05:01:48 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@ int	ft_strlead(const char *s1, const char *s2)
 	size_t	it;
 
 	it = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (0);
 	while (s1[it] && (s1[it] == s2[it] && s2[it]))
 		it++;
+	printf("check: lead success%s\n", s2+it);
 	if (s2[it] == '\0')
 		return (1);
+	printf("check: lead fail%s\n", s2+it);
 	return (0);
 }
+// printf(BLUE"success\n"RESET);

@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 21:01:26 by yichan            #+#    #+#             */
-/*   Updated: 2023/01/29 14:27:20 by yichan           ###   ########.fr       */
+/*   Updated: 2023/08/16 03:19:21 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ char	*joinfree(char *str1, char *str2)
 		str1[0] = '\0';
 	}
 	str = ft_strjoin2(str1, str2);
-	free(str1);
+	ft_free(str1);
 	return (str);
 }

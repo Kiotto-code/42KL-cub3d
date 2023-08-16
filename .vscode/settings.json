@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "__locale": "c",
-        "cstring": "c"
+        "cstring": "c",
+        "sstream": "c",
+        "get_next_line.h": "c",
+        "ft_printf.h": "c",
+        "libft.h": "c"
     }
 }
