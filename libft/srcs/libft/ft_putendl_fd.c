@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yichan <yichan@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:45:51 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/10 19:50:52 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 18:31:10 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	ft_putendl_fd(char *s, int fd)
 {
 	if (!s)
 		return ;
+	ft_printf(RED);
 	while (*s)
 	{
 		ft_putchar_fd(*s, fd);
 		s++;
 	}
+	ft_printf(RESET);
 	ft_putchar_fd('\n', fd);
 }

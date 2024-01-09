@@ -6,11 +6,11 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 02:04:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/09 17:13:09 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 19:09:10 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 int	main(int ac, char **av)
 {
@@ -18,12 +18,15 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error("WRONG ARGUMENT", 2);
+	printf(RED"check : %s\n"RESET, ft_strend(av[1], 4));
+	if (ft_strcmp(ft_strend(av[1], 4), ".cub") != 0)
+		ft_error("WRONG FILE EXTENSION", 2);
 	record = (t_book){0};
 	record.file = ft_strdup(av[1]);
-	map_file_checking(&record);
-	printf(BG_BRIGHT_PURPLE"\n\nrecord.file_content HERE!!\n\n");
+	if (map_file_checking(&record) == FAIL)
+		ft_error(RED"The map is not valid"RESET, FAIL);
+	printf("\n\n"BG_BRIGHT_PURPLE"record.file_content HERE!!"RESET"\n\n");
 	map_print(record.file_content);
-
-	printf(BG_BRIGHT_PURPLE"\n\nrecord.map pringtinh HERE!!\n\n");
+	printf("\n\n"BG_BRIGHT_PURPLE"record.map pringtinh HERE!!"RESET"\n\n");
 	map_print(record.map);
 }

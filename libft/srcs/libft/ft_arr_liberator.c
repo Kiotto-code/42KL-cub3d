@@ -6,13 +6,11 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 23:38:33 by yichan            #+#    #+#             */
-/*   Updated: 2023/08/16 03:19:21 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 17:54:48 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-
 
 void	array_liberator(char **array)
 {

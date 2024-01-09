@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 01:45:05 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/09 17:11:12 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 17:48:19 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ char	**ft_duparr(char **arr)
 	ret[arr_len] = 0;
 	while (--arr_len >= 0 && arr[arr_len])
 	{
-		// printf("check: 1111\n");
-		// ft_putendl_fd(arr[arr_len], 2);
 		ret[arr_len] = ft_strdup(arr[arr_len]);
-		printf("%d\n", arr_len);
-		// arr_len--;
 	}
 	return (ret);
 }

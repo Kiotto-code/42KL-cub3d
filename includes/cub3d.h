@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:50:04 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/09 14:56:29 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 18:03:11 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ typedef struct s_book
 	char			**file_content;
 	char			**map;
 }	t_book;
+
+enum Status {
+  SUCCESS,
+  FAIL,
+};
 
 //map_calidity.c
 int	map_valid_wall_surround(t_book *record);

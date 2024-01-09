@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:42:47 by yichan            #+#    #+#             */
-/*   Updated: 2023/08/16 03:36:29 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 18:32:41 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <stdio.h>
+
 # include "color.h"
+# include "ft_printf.h"
 
 typedef struct s_stk
 {
@@ -103,6 +105,5 @@ void	ft_strswitch(char **old, char *new);
 int		ft_strlead(const char *s1, const char *s2);
 int		ft_free(void *memory);
 int		ft_is_all_space(char *str);
-
 
 #endif
