@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:49:19 by yichan            #+#    #+#             */
-/*   Updated: 2023/08/16 04:20:05 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 17:23:03 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int	all_wall(char *str)
 	int	status;
 
 	status = 1;
-	while (*str && status)
+	printf(RED"check : \n");
+	while (*str++ && status)
 	{
 		if (*str != '1')
 			status &= 0;
 	}
+	printf(YELLOW"check : \n");
 	return (status);
 }
 
@@ -32,7 +34,7 @@ int	ends_wall(char **map)
 
 	status = 1;
 	mapline = *map;
-	while (*mapline)
+	while (mapline && *mapline)
 	{
 		if (mapline[ft_strlen(mapline)] != '1')
 			status &= 0;
@@ -45,7 +47,7 @@ int	ends_wall(char **map)
 
 int	map_valid_wall_surround(t_book *record)
 {
-	if (all_wall(record->map[0]) == 0)
+	if (record->map[0] && all_wall(record->map[0]) == 0)
 		return (1);
 	if (ends_wall(record->map) == 0)
 		return (1);
@@ -72,14 +74,16 @@ int	map_file_checking(t_book *record)
 		free(tmp);
 	}
 	record->file_content = ft_split(fileline, '\n');
-	// printf(BLUE"check: !!!!!%s\n"RESET, fileline);
 	if (map_find(record) == 1)
 	{
 		ft_putendl_fd("invalid file format", 2);
 		return (1);
 	}
+	// printf(BLUE"check: !!!!!%s\n"RESET, fileline);
+	printf(BLUE"check: !!!!!\n"RESET);
 	if (map_valid_wall_surround(record) == 1)
 		return (1);
+	printf(YELLOW"check: !!!!!\n"RESET);
 	// for (int i = 0; record->map[i]; i++)
 	// 	printf(BLUE"check: !!!!!%s\n"RESET, record->map[i]);
 	return (0);

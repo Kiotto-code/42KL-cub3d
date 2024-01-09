@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:50:04 by yichan            #+#    #+#             */
-/*   Updated: 2023/08/16 03:34:02 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:56:29 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ int	map_file_checking(t_book *record);
 
 //map_find.c
 int	map_find(t_book *record);
+
+//cb3d_printer.c
+int map_print(char **db_arr);
 
 #endif

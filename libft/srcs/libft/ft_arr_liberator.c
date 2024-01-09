@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+
+
 void	array_liberator(char **array)
 {
 	int	it;

@@ -16,7 +16,7 @@ int	ft_free(void *memory)
 {
 	if (!memory)
 		return (1);
-	ft_free(memory);
+	free(memory);
 	memory = NULL;
 	return (0);
 }

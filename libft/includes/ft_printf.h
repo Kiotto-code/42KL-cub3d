@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2023/07/08 02:49:02 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:30:40 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void			precise(t_flag *fmt);
 char			*ft_uitoa(unsigned long nb, t_flag *fmt);
 void			ft_putascii(t_flag *fmt, char *ascii);
 void			ft_printfx(t_flag *fmt, char *hexa, char *prefix);
+// int				ft_max(size_t a, size_t b);
+
 // size_t			ft_max(int a, int b);
 
 #endif

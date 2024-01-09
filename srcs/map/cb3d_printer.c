@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   cb3d_printer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 18:44:15 by yichan            #+#    #+#             */
-/*   Updated: 2022/10/10 16:47:56 by yichan           ###   ########.fr       */
+/*   Created: 2024/01/09 14:14:08 by yichan            #+#    #+#             */
+/*   Updated: 2024/01/09 14:55:56 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+int map_print(char **db_arr)
 {
-	t_list	*temp;
-
-	temp = lst;
-	if (!lst || !f)
-		return ;
-	while (temp)
-	{
-		f(temp->content);
-		temp = temp->next;
-	}
-}
+    if (db_arr == NULL)
+        return false;
+    // printf("check : Is map_print here??\n");
+    for (int i = 0; db_arr[i]; i++)
+		printf(BLUE"check: !!!!!%s\n"RESET, db_arr[i]);
+    return true;
+} 
