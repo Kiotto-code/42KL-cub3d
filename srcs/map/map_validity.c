@@ -6,50 +6,89 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:49:19 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/09 18:50:15 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/14 02:09:27 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//check if the while string made up of only 1
 int	all_wall(char *str)
 {
 	int	status;
 
-	status = 1;
-	while (*str++ && status)
+	status = SUCCESS;
+	while (*str++ && status == SUCCESS)
 	{
+		// printf(GREEN"mapline here %c\n", *str);
+		if (*str == '\0' | *str == ' ')
+			break ;
 		if (*str != '1')
-			status &= 0;
+		{
+			status |= FAIL;
+			printf(RED"check: %s;ine break here\n", str);
+			break ;	
+		}
+		// if 
 	}
+	printf(RED"all_wall STATUS HERE: %d\n"RESET, status);
 	return (status);
 }
 
+//ends wall is checking the wall at the first and last square. (tail end)
 int	ends_wall(char **map)
 {
 	int		status;
 	char	*mapline;
+	int		i;
+	int		line_len_diff;
 
-	status = 1;
-	mapline = *map;
-	while (mapline && *mapline)
+	status = SUCCESS;
+	i = 0;
+	mapline = map[i++];
+	while (mapline && *mapline && status == SUCCESS)
 	{
-		if (mapline[ft_strlen(mapline)] != '1')
-			status &= 0;
+		if (mapline[ft_strlen(mapline) -1] != '1')
+			status |= FAIL;
 		if (mapline[0] != '1')
-			status &= 0;
-		mapline = *(map++);
+			status |= FAIL;
+		mapline = map[i++];
 	}
+	i = 0;
+	while(++i < ft_arrlen(map))
+	{
+		line_len_diff = ft_strlen(map[i]) - ft_strlen(map[i -1]);
+		if (line_len_diff > 0 && all_wall(map[i] + (ft_strlen(map[i]) - line_len_diff)) == FAIL)
+			return (FAIL);
+		line_len_diff = ft_strlen(map[i]) - ft_strlen(map[i +1]);
+		if (line_len_diff > 0 && all_wall(map[i] + (ft_strlen(map[i]) - line_len_diff)) == FAIL)
+			return (FAIL);
+	}
+	printf(RED"ends_wall STATUS HERE: %d\n"RESET, status);
 	return (status);
 }
 
 int	map_valid_wall_surround(t_book *record)
 {
-	if (record->map[0] && all_wall(record->map[0]) == 0)
-		return (1);
-	if (ends_wall(record->map) == 0)
-		return (1);
-	return (0);
+	char	*last_map;
+	// int		bottomlen;
+	// int		toplen;
+	int		i;
+	
+	if (record->map[0] && all_wall(record->map[0]) == FAIL)
+		return (FAIL);
+	if (ends_wall(record->map) == FAIL)
+		return (FAIL);
+	i = 0;
+	while (record->map[i])
+		i++;
+	last_map = record->map[i-1];
+	if (last_map && all_wall(last_map) == FAIL)
+		return (FAIL);
+	// toplen = ft_strlen(record->map[0]);
+	// bottomlen = ft_strlen(last_map);
+	
+	return (SUCCESS);
 }
 
 int	map_file_checking(t_book *record)
@@ -60,7 +99,7 @@ int	map_file_checking(t_book *record)
 
 	fd = open(record->file, O_RDONLY);
 	if (fd == -1)
-		return (ft_putendl_fd("failed open file", 2), 1);
+		return (ft_putendl_fd("failed open file", 2), FAIL);
 	fileline = ft_strdup("");
 	while (true)
 	{
@@ -71,12 +110,12 @@ int	map_file_checking(t_book *record)
 		free(tmp);
 	}
 	record->file_content = ft_split(fileline, '\n');
-	if (map_find(record) == 1)
+	if (map_find(record) == FAIL)
 	{
 		ft_putendl_fd("invalid file sequence format as subject required", 2);
-		return (1);
+		return (FAIL);
 	}
-	if (map_valid_wall_surround(record) == 1)
-		return (ft_putendl_fd("invalid map as not wall surrounded", 2), 1);
-	return (0);
+	if (map_valid_wall_surround(record) == FAIL)
+		return (ft_putendl_fd("invalid map as not wall surrounded", 2), FAIL);
+	return (SUCCESS);
 }

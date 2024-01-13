@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:50:04 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/09 18:03:11 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/10 17:03:47 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,25 @@
 /* Colors */
 // # define WHITE		-1
 
+typedef struct s_coor t_coor;
+
 typedef struct s_book
 {
+	void			*mlx;
+	void			*win;
+	// t_coor			winsize;
+	struct s_coor	*winsize;
+	unsigned int	winfps;
 	const char		*file;
 	char			**file_content;
 	char			**map;
 }	t_book;
+
+struct s_coor
+{
+	int	y;
+	int	x;
+};
 
 enum Status {
   SUCCESS,
