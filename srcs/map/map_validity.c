@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:49:19 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/14 02:09:27 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/18 11:27:41 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	all_wall(char *str)
 		}
 		// if 
 	}
-	printf(RED"all_wall STATUS HERE: %d\n"RESET, status);
+	printf(RED"all_wall STATUS HERE: %s\n"RESET, status ? "FAIL" : "SUCCESS");
 	return (status);
 }
 
@@ -64,7 +64,7 @@ int	ends_wall(char **map)
 		if (line_len_diff > 0 && all_wall(map[i] + (ft_strlen(map[i]) - line_len_diff)) == FAIL)
 			return (FAIL);
 	}
-	printf(RED"ends_wall STATUS HERE: %d\n"RESET, status);
+	printf(RED"ends_wall STATUS HERE: %s\n"RESET, status ? "FAIL" : "SUCCESS");
 	return (status);
 }
 
