@@ -6,7 +6,7 @@
 #    By: yichan <yichan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/08 18:30:38 by yichan            #+#    #+#              #
-#    Updated: 2024/01/16 18:38:56 by yichan           ###   ########.fr        #
+#    Updated: 2024/01/22 21:37:29 by yichan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MLX					:= ./mlx/libmlx.a
 MLXFLAGS			:= -framework OpenGL -framework AppKit
 MLX_WARNING_SILENT	:= 2> /dev/null
 MLX_MAKE			:= make -C mlx 2> /dev/null ${MLX_WARNING_SILENT}
-MLX_PACK			:- ./mlx/mlx
+# MLX_PACK			:- ./mlx/mlx
 
 CSAN		:= -fsanitize=address -g3
 CPPFLAG		:= -Wall -Werror -Wextra ${CSAN}
@@ -61,7 +61,7 @@ ${NAME}		:	${OBJS}
 
 ${OBJS_PATH}/%.o:	${SRCS_PATH}/%.c ./includes/*.h ./Makefile 
 					@mkdir -p $(@D)
-					${CC} ${CPPFLAG} ${MLXFLAGS2}  -c -I${INCLUDES} $< -o $@
+					${CC} ${CPPFLAG} ${MLXFLAGS2} -c -I${INCLUDES} $< -o $@
 						
 clean		:
 				${MAKE} -C ${LIBFT_PATH} $@

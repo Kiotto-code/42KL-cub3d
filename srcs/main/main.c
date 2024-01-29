@@ -6,11 +6,18 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 02:04:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/18 10:55:00 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/26 23:39:49 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// const void	*mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
+
+void	run_game(t_book *record)
+{
+	open_image(record);
+}
 
 int	main(int ac, char **av)
 {
@@ -25,17 +32,13 @@ int	main(int ac, char **av)
 	if (map_file_checking(&record) == FAIL)
 		ft_error(RED"The map is not valid"RESET, FAIL);
 	record.mlx = mlx_init();
-	open_image(&record);
-
-
-
-
-
-
+	run_game(&record);
 	
+	// open_image(&record);
 	
-	printf("\n\n"BG_BRIGHT_PURPLE"record.file_content HERE!!"RESET"\n\n");
-	map_print(record.file_content);
-	printf("\n\n"BG_BRIGHT_PURPLE"record.map HERE!!"RESET"\n\n");
-	map_print(record.map);
+	// printf("\n\n"BG_BRIGHT_PURPLE"record.file_content HERE!!"RESET"\n\n");
+	// map_print(record.file_content);
+	// printf("\n\n"BG_BRIGHT_PURPLE"record.map HERE!!"RESET"\n\n");
+	// map_print(record.map);
+	// mlx_destroy_display(record.mlx);
 }

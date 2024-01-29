@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:50:04 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/19 17:35:51 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/26 17:45:35 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 /* Colors */
 // # define WHITE		-1
 
-struct s_coor
+typedef struct s_coor
 {
 	int	y;
 	int	x;
@@ -86,7 +86,13 @@ typedef struct s_book
 	char			**file_content;
 	char			**elem_record;
 	char			**map;
-	t_key			*key;
+
+	
+	t_coor			line_initial;
+	int				line_steps;
+
+	
+	t_key			key;
 }	t_book;
 
 enum Status {
@@ -177,7 +183,13 @@ int map_print(char **db_arr);
 void	open_image(t_book *record);
 
 //mlx_window.c
-int    image_update(void);
+int    image_update(t_book *record);
 
+//mlx_line.c
+void    mlx_line_inc(float x_inc, float y_inc, t_book *record);
+void    mlx_draw_line(int x0, int y0, int x1, int y1, t_book *record);
+
+//mlx_hook_pack.c
+void    hook_pack(t_book *record);
 
 #endif

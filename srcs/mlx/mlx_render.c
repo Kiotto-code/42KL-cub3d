@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:09:17 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/18 12:12:34 by yichan           ###   ########.fr       */
+/*   Updated: 2024/01/24 17:11:48 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int    image_update(t_book *record)
 {
-    
+    // mlx_draw_line(0,0,400,500,record);
+    (void) record;
+    return (0);
 };
 
 //so_long image_update
