@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:32:35 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/27 00:08:24 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/06 15:18:48 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,45 @@ int	map_find(t_book *record)
 
 	content = record->file_content;
 	i = 0;
-	while (*content)
+	while (content[i])
 	{
-		if (!(ft_strlead(*content, order[i]) || ft_is_all_space(*content)))
+		if (!(ft_strlead(content[i], order[i]) || ft_is_all_space(content[i])))
 			return (FAIL);
 		i++;
-		content++;
 		if (order[i] == NULL)
 			break ;
 	}
-	// record->elem_record =  content
+	record->elem_record = ft_subarr(content, 0, i-1);
+	ft_print_arr(record->elem_record, "record->elem_record");
+	pause();
+	content += i;
 	record->map = ft_duparr(content);
+	// pause();
 	return (SUCCESS);
 }
+// int	map_find(t_book *record)
+// {
+// 	const char	*order[7] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
+// 	char		**content;
+// 	int			i;
+
+// 	content = record->file_content;
+// 	i = 0;
+// 	while (content[i])
+// 	{
+// 		if (!(ft_strlead(*content, order[i]) || ft_is_all_space(*content)))
+// 			return (FAIL);
+// 		record->elem_record[i] = ft_strdup(*content);
+// 		i++;
+// 		// content++;
+// 		if (order[i] == NULL)
+// 			break ;
+// 	}
+// 	// record->elem_record =  content
+// 	// record->elem_record = ft_subarr(content, 0, i);
+// 	// content = content + i;
+// 	ft_print_arr(record->elem_record, "record->elem_record");
+// 	record->map = ft_duparr(content);
+// 	// pause();
+// 	return (SUCCESS);
+// }

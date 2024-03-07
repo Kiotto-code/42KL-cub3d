@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:42:47 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/29 17:53:23 by yichan           ###   ########.fr       */
+/*   Updated: 2024/02/02 13:35:56 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,7 @@ int		ft_strlead(const char *s1, const char *s2);
 int		ft_free(void *memory);
 int		ft_is_all_space(char *str);
 char	**ft_subarr(char **arr, size_t start, size_t end);
+void	ft_print_arr(char **arr, char *prompt);
+
 
 #endif

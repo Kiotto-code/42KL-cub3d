@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 02:04:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/26 23:39:49 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/07 18:45:58 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 		ft_error("WRONG FILE EXTENSION", 2);
 	record = (t_book){0};
 	record.file = ft_strdup(av[1]);
-	if (map_file_checking(&record) == FAIL)
+	if (map_reading(&record) == FAIL)
 		ft_error(RED"The map is not valid"RESET, FAIL);
 	record.mlx = mlx_init();
 	run_game(&record);

@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:58:30 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/26 17:27:40 by yichan           ###   ########.fr       */
+/*   Updated: 2024/02/02 13:32:51 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@
 // 	ft_free(testing);
 // }
 
-void	ft_print_arr(char **arr, char *prompt)
-{
-	size_t	i;
+// void	ft_print_arr(char **arr, char *prompt)
+// {
+// 	size_t	i;
 
-	i = 0;
-	printf(BLUE"CHECKING: %s\n"RESET, prompt);
-	while (arr[i])
-	{
-		// printf("%s\t: ", prompt);
-		// fflush(stdout);
-		ft_putendl_fd(arr[i], 1);
-		i++;
-	}
-}
+// 	i = 0;
+// 	printf(BLUE"CHECKING: %s\n"RESET, prompt);
+// 	while (arr[i])
+// 	{
+// 		// printf("%s\t: ", prompt);
+// 		// fflush(stdout);
+// 		ft_putendl_fd(arr[i], 1);
+// 		i++;
+// 	}
+// }
 
 int main()
 {

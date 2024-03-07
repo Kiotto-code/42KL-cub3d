@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:49:19 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/18 11:27:41 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/07 18:45:58 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	map_valid_wall_surround(t_book *record)
 	return (SUCCESS);
 }
 
-int	map_file_checking(t_book *record)
+int	map_reading(t_book *record)
 {
 	int		fd;
 	char	*tmp;

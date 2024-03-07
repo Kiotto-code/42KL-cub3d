@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 23:54:22 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/27 23:54:28 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/06 13:28:35 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_print_arr(char **arr, char *prompt)
 {
 	size_t	i;
 
+	if (!arr)
+		return ;
 	i = 0;
 	printf(BLUE"CHECKING: %s\n"RESET, prompt);
 	while (arr[i])

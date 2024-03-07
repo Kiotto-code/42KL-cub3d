@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:50:04 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/26 17:45:35 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/07 18:45:58 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,25 @@ typedef struct s_coor
 	int	x;
 }	t_coor;
 
-typedef struct s_object
+// typedef struct s_object
+// {
+// 	void	*img;
+// 	int		width;
+// 	int		height;
+// }	t_object;
+
+typedef struct s_image
 {
 	void	*img;
-	int		width;
-	int		height;
-}	t_object;
+	char	*addr; //data
+	char	**d_arr;
+	char	*path;
+	int		bits_per_pixel;
+	int		line_length; //bytes per row
+	int		endian;
+	int		width; //x
+	int		height; //y
+}	t_image;
 
 //fucking YOU IDIOT PON PON
 // typedef struct s_player
@@ -84,6 +97,7 @@ typedef struct s_book
 	unsigned int	winfps;
 	const char		*file;//file_name
 	char			**file_content;
+	// char			*elem_record[100];
 	char			**elem_record;
 	char			**map;
 
@@ -171,7 +185,7 @@ enum e_x11masks
 
 //map_calidity.c
 int	map_valid_wall_surround(t_book *record);
-int	map_file_checking(t_book *record);
+int	map_reading(t_book *record);
 
 //map_find.c
 int	map_find(t_book *record);
