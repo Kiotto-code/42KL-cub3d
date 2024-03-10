@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_find.c                                         :+:      :+:    :+:   */
+/*   file_data_reading.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -30,7 +30,7 @@
 // 	return (ret);
 // }
 
-int	map_find(t_book *record)
+int	file_data_reading(t_book *record)
 {
 	const char	*order[7] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	char		**content;
@@ -54,7 +54,7 @@ int	map_find(t_book *record)
 	// pause();
 	return (SUCCESS);
 }
-// int	map_find(t_book *record)
+// int	file_data_reading(t_book *record)
 // {
 // 	const char	*order[7] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 // 	char		**content;

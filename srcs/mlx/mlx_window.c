@@ -6,11 +6,20 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:44:58 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/26 23:40:09 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/10 01:02:54 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_init_mlx(t_mlx *mlx)
+{
+	mlx->mlx = mlx_init();
+	mlx->win = mlx_new_window(mlx->mlx, WIN_W, WIN_H, "cub3D");
+	mlx->img = mlx_new_image(mlx->mlx, WIN_W, WIN_H);
+	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
+			&mlx->line_length, &mlx->endian);
+}
 
 // static void	toggle_mouse(t_ctx *ctx)
 // {

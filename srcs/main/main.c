@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 02:04:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/07 18:45:58 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/10 22:51:03 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,68 @@
 
 // const void	*mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
+void	data_initialize(t_data *data, t_table *table, t_position *position)
+{
+	create_trigonometric_tables(6480, table, 0);
+	init_player_position(data->map, position);
+}
+
+// void	pre_exec(t_data *data, t_table *table, t_position *position)
+// {
+// 	create_trigonometric_tables(6480, table, 0);
+// 	init_player_position(data->map, position);
+// }
+
+void	full_data(t_data *data, t_table *table,
+	t_position *position, t_ray *ray)
+{
+	data->table = table;
+	data->ray = ray;
+	data->position = position;
+	data->ray_h = 0;
+}
+
+
 void	run_game(t_book *record)
 {
+	t_table		table;
+	t_position	position;
+	t_ray		rays[RAY_NUM];
+	t_data		data;
+	t_mlx		mlx;
+
+	full_data(&data, &table, &position, rays);
+	data_initialize(&data, &table, &position);
+	ft_init_mlx(&mlx);
+	get_image(&data);
 	open_image(record);
+	// drawing(t_data *data);
 }
+
+// int	start_exec(t_map *map)
+// {
+// 	t_table		table;
+// 	t_position	position;
+// 	t_ray		rays[N_RAY];
+// 	t_data		data;
+// 	t_mlx		mlx;
+
+// 	data.table = &table;
+// 	data.ray = rays;
+// 	data.position = &position;
+// 	data.ray_h = 0;
+// 	data.map = map;
+// 	data.mlx = &mlx;
+// 	pre_exec(&data, &table, &position);
+// 	ft_init_mlx(&mlx);
+// 	get_image(&data);
+// 	init_keystate(&data);
+// 	get_gun(&data);
+// 	drawing(&data);
+// 	hooking(&mlx, &data);
+// 	return (1);
+// }
+
 
 int	main(int ac, char **av)
 {
@@ -31,7 +89,7 @@ int	main(int ac, char **av)
 	record.file = ft_strdup(av[1]);
 	if (map_reading(&record) == FAIL)
 		ft_error(RED"The map is not valid"RESET, FAIL);
-	record.mlx = mlx_init();
+	// record.mlx = mlx_init();
 	run_game(&record);
 	
 	// open_image(&record);
