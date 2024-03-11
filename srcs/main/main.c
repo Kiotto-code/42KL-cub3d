@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 02:04:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/11 10:35:57 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/11 14:48:30 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	run_game(t_book *record)
 
 	// exit(0);
 	record->data = &data;
-	data.map = record->map;
+	data.map = record->map_table;
 	data.mlx = record->mlx;
+	store(record);
 	full_data(&data, &table, &position, rays);
 	data_initialize(&data, &table, &position);
 	ft_init_mlx(record->mlx);
@@ -94,6 +95,7 @@ int	main(int ac, char **av)
 	record.file = ft_strdup(av[1]);
 	if (map_reading(&record) == FAIL)
 		ft_error(RED"The map is not valid"RESET, FAIL);
+	// store(&record);
 	// record.mlx = mlx_init();
 	run_game(&record);
 	

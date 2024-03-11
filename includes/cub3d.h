@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:50:04 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/11 10:35:49 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/11 14:42:02 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,44 @@ typedef struct s_line_param
 	int	y1;
 }	t_line_param;
 
+// typedef struct s_map
+// {
+// 	char			**map_tab;
+// 	char			*map_name; //map path
+// 	int				map_h;
+// 	int				map_w;
+// 	int				map_vh;
+// 	int				map_vw;
+// 	int				pn;
+// 	int				px;
+// 	int				py;
+// 	int				pv;
+// 	char			*meta_data[6];
+// 	int				flr[3]; //floor color
+// 	int				cl[3]; //ceiling color
+// 	unsigned long	int_f; //floor color in hexadecimal
+// 	unsigned long	int_c; //ceiling color in hexadecimal
+// }	t_map;
+
 typedef struct s_map
 {
 	char			**map_tab;
-	char			*map_name; //map path
+	char			*map_name;
 	int				map_h;
 	int				map_w;
 	int				map_vh;
-	int				map_vw;
+	int				map_vw; //map_tab = map table, map_name = map name, map_h = map height, map_w = map width, map_vh = map virtual height, map_vw = map virtual width
 	int				pn;
 	int				px;
-	int				py;
-	int				pv;
-	char			*meta_data[6];
+	int				py; 
+	int				pv; //pn = player number, px = player x, py = player y, pv = player pov
+	char			*meta_data[6]; //meta_data[0] = NO, meta_data[1] = SO, meta_data[2] = WE, meta_data[3] = EA, meta_data[4] = F, meta_data[5] = C
 	int				flr[3];
-	int				cl[3];
+	int				cl[3]; //flr and cl are the same as int_f and int_c but in decimal
 	unsigned long	int_f;
-	unsigned long	int_c;
+	unsigned long	int_c; //int_f and int_c are the same as flr and cl but in hex
 }	t_map;
+
 
 typedef struct s_image
 {
@@ -188,6 +208,7 @@ typedef struct s_key
 	int	right;
 	int	click;
 	int	space;
+	int	esc;
 }	t_key; // key_state
 
 // typedef struct s_keystate
@@ -268,6 +289,7 @@ typedef struct s_data
 typedef struct s_book
 {
 	t_data			*data;
+	t_map			*map_table;
 	void			*mlx;//mlx_init
 	void			*win;//mlx_new_window
 	// t_coor			winsize;

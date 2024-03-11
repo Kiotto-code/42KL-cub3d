@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 23:55:50 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/10 23:56:04 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/11 14:42:12 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ int	keypress(int keycode, t_data *data)
 	else if (keycode == 2)
 		data->keystate.d = 1;
 	else if (keycode == 124)
-		data->keystate.l = 1;
+		data->keystate.left = 1;
 	else if (keycode == 123)
-		data->keystate.r = 1;
+		data->keystate.right = 1;
 	else if (keycode == 49)
-		data->keystate.q = 1;
+		data->keystate.space = 1;
 	else if (keycode == 53)
 		data->keystate.esc = 1;
-	else if (keycode == 35)
-		data->keystate.o = 1;
-	else if (keycode == 8)
-		data->keystate.c = 1;
+	// else if (keycode == 35)
+	// 	data->keystate.o = 1;
+	// else if (keycode == 8)
+	// 	data->keystate.c = 1;
 	return (0);
 }
 
