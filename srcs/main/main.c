@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 02:04:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/10 22:51:03 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/11 10:35:57 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,18 @@ void	run_game(t_book *record)
 	t_position	position;
 	t_ray		rays[RAY_NUM];
 	t_data		data;
-	t_mlx		mlx;
+	// t_mlx		mlx;
 
+	// exit(0);
+	record->data = &data;
+	data.map = record->map;
+	data.mlx = record->mlx;
 	full_data(&data, &table, &position, rays);
 	data_initialize(&data, &table, &position);
-	ft_init_mlx(&mlx);
+	ft_init_mlx(record->mlx);
 	get_image(&data);
-	open_image(record);
+	init_keystate(&data);
+	// open_image(record);
 	// drawing(t_data *data);
 }
 

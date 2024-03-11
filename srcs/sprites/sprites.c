@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:20:19 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/10 22:51:03 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/10 23:25:02 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	image_handling(t_data *data)
 {
-	t_image	*t;
+	t_sprite	*t;
 
 	t = &data->mlx->texters;
 	t->c_door.img = mlx_xpm_file_to_image(data->mlx->mlx,
@@ -43,7 +43,7 @@ void	image_handling(t_data *data)
 
 void	get_image(t_data *data)
 {
-	t_image	*t;
+	t_sprite	*t;
 
 	t = &data->mlx->texters;
 	t->n_img.img = mlx_xpm_file_to_image(data->mlx->mlx,
@@ -67,5 +67,5 @@ void	get_image(t_data *data)
 	t->c_door.addr = (int *)mlx_get_data_addr(t->c_door.img,
 			&t->c_door.bits_per_pixel, &t->c_door.line_length,
 			&t->c_door.endian);
-	get_image_suit(data);
+	image_handling(data);
 }

@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:08:42 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/09 21:51:41 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/10 23:52:27 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ void	create_trigonometric_tables(int narc, t_table *table, int i)
 	table->tan_table = tan_res;
 	table->cos_table = cos_res;
 	table->sin_table = sin_res;
+}
+
+void	init_keystate(t_data *data)
+{
+	data->keystate.w = 0;
+	data->keystate.a = 0;
+	data->keystate.s = 0;
+	data->keystate.d = 0;
+	data->keystate.left = 0;
+	data->keystate.right = 0;
+	data->keystate.click = 0;
+	data->keystate.space = 0;
 }
 
 void	init_player_position(t_map *map, t_position *play_pos)

@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:50:04 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/10 01:03:10 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/11 10:35:49 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_line_param
 typedef struct s_map
 {
 	char			**map_tab;
-	char			*map_name;
+	char			*map_name; //map path
 	int				map_h;
 	int				map_w;
 	int				map_vh;
@@ -109,6 +109,17 @@ typedef struct s_image
 	int		width; //x
 	int		height; //y
 }	t_image;
+
+typedef struct s_sprite
+{
+	t_image	n_img;
+	t_image	s_img;
+	t_image	e_img;
+	t_image	w_img;
+	t_image	o_door;
+	t_image	c_door;
+	t_image	side;
+}	t_sprite;
 
 typedef struct s_table
 {
@@ -175,8 +186,8 @@ typedef struct s_key
 	int	d;
 	int	left;
 	int	right;
-	int	shift;
-	int	mouse;
+	int	click;
+	int	space;
 }	t_key; // key_state
 
 // typedef struct s_keystate
@@ -204,18 +215,18 @@ typedef struct s_imgdata
 	int		endian;
 	int		x;
 	int		y;
-}	t_imgdata;
+}	t_texter;
 
-typedef struct s_images
-{
-	t_imgdata	n_img;
-	t_imgdata	s_img;
-	t_imgdata	e_img;
-	t_imgdata	w_img;
-	t_imgdata	o_door;
-	t_imgdata	c_door;
-	t_imgdata	side;
-}	t_images;
+// typedef struct s_images
+// {
+// 	t_texter	n_img;
+// 	t_texter	s_img;
+// 	t_texter	e_img;
+// 	t_texter	w_img;
+// 	t_texter	o_door;
+// 	t_texter	c_door;
+// 	t_texter	side;
+// }	t_images;
 
 
 typedef struct s_mlx
@@ -227,11 +238,12 @@ typedef struct s_mlx
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	t_images	texters;
+	t_sprite	texters;
 }	t_mlx;
 
 typedef struct s_data
 {
+	t_mlx			*mlx;
 	t_map			*map;
 	t_table			*table;
 	t_ray			*ray;
@@ -255,10 +267,11 @@ typedef struct s_data
 
 typedef struct s_book
 {
+	t_data			*data;
 	void			*mlx;//mlx_init
 	void			*win;//mlx_new_window
 	// t_coor			winsize;
-	struct s_coor	*winsize;
+	t_coor	*winsize;
 	unsigned int	winfps;
 	const char		*file;//file_name
 	char			**file_content;
@@ -378,5 +391,13 @@ void	casting_rays(t_table *table, t_ray *rays, t_position position);
 //init.c
 void	create_trigonometric_tables(int narc, t_table *table, int i);
 void	init_player_position(t_map *map, t_position *play_pos);
+void	init_keystate(t_data *data);
+
+//sprites.c
+void	get_image(t_data *data);
+void	ft_init_mlx(t_mlx *mlx);
+
+//key_handling.c
+int	keypress(int keycode, t_data *data);
 
 #endif

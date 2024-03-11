@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:57:12 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/26 23:42:48 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/10 23:57:10 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ static int handle_mouse_motion(int x, int y, void *param) {
     return (0);
 }
 
-static int	key_press(const int keycode, t_book *record)
-{
-	if (keycode == KEY_W)
-		record->key.w = KEY_W;
-	if (keycode == KEY_A)
-		record->key.a = KEY_A;
-	if (keycode == KEY_S)
-		record->key.s = KEY_S;
-	if (keycode == KEY_D)
-		record->key.d = KEY_D;
-	// if (keycode == KEY)
+// static int	key_press(const int keycode, t_book *record)
+// {
+// 	if (keycode == KEY_W)
+// 		record->key.w = KEY_W;
+// 	if (keycode == KEY_A)
+// 		record->key.a = KEY_A;
+// 	if (keycode == KEY_S)
+// 		record->key.s = KEY_S;
+// 	if (keycode == KEY_D)
+// 		record->key.d = KEY_D;
+// 	// if (keycode == KEY)
 
-	return (0);
-}
+// 	return (0);
+// }
 
 int handle_key_press(int keycode, void *param) {
     // printf("Key pressed: %d\n", keycode);

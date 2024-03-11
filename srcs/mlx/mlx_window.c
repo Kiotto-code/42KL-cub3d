@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:44:58 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/10 01:02:54 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/10 23:26:08 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,26 +86,26 @@ void	ft_init_mlx(t_mlx *mlx)
 //     mlx_hook(record->win, MotionNotify, PointerMotionMask, &handle_mouse_motion, record->mlx);
 // }
 
-void	open_image(t_book *record)
-{
-	record->win = mlx_new_window(record->mlx, SCREEN_WIDTH,
-			SCREEN_HEIGHT, "cub3d!");
-	if (record->win == NULL)
-	{
-		free(record->win);
-		ft_error("mlx_new_window not open", 1);
-	}
-	// record->win = mlx_new_window(record->mlx, record->mapsize.x * INTERVAL,
-	// 		record->mapsize.y * INTERVAL, "So_long!");
-	// insert_sprites(record);
-	mlx_do_sync(record->mlx); // Make sure the events are synchronized
-	// mlx_hook(record->win, DestroyNotify, NoEventMask, &shut_exit, record);
-	// mlx_hook(record->win, KeyPress, KeyPressMask, &key_press, record);
-	// mlx_hook(record->win, KeyPress, KeyPressMask, &handle_key_press, record);
-	// mlx_hook(record->win, MotionNotify, NoEventMask, &handle_mouse_motion, record->mlx);
-    // mlx_hook(record->win, MotionNotify, PointerMotionMask, &handle_mouse_motion, record->mlx);
-	hook_pack(record);
-	mlx_draw_line(0,0,400,500,record);
-	mlx_loop_hook(record->mlx, &image_update, record);
-	mlx_loop(record->mlx);
-}
+// void	open_image(t_book *record)
+// {
+// 	record->win = mlx_new_window(record->mlx, SCREEN_WIDTH,
+// 			SCREEN_HEIGHT, "cub3d!");
+// 	if (record->win == NULL)
+// 	{
+// 		free(record->win);
+// 		ft_error("mlx_new_window not open", 1);
+// 	}
+// 	// record->win = mlx_new_window(record->mlx, record->mapsize.x * INTERVAL,
+// 	// 		record->mapsize.y * INTERVAL, "So_long!");
+// 	// insert_sprites(record);
+// 	mlx_do_sync(record->mlx); // Make sure the events are synchronized
+// 	// mlx_hook(record->win, DestroyNotify, NoEventMask, &shut_exit, record);
+// 	// mlx_hook(record->win, KeyPress, KeyPressMask, &key_press, record);
+// 	// mlx_hook(record->win, KeyPress, KeyPressMask, &handle_key_press, record);
+// 	// mlx_hook(record->win, MotionNotify, NoEventMask, &handle_mouse_motion, record->mlx);
+//     // mlx_hook(record->win, MotionNotify, PointerMotionMask, &handle_mouse_motion, record->mlx);
+// 	hook_pack(record);
+// 	mlx_draw_line(0,0,400,500,record);
+// 	mlx_loop_hook(record->mlx, &image_update, record);
+// 	mlx_loop(record->mlx);
+// }
