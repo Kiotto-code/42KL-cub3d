@@ -21,7 +21,7 @@ void	mlx_line_inc(float x_inc, float y_inc, t_book *record)
 	i = 0;
 	while (i++ <= record->line_steps)
 	{
-		mlx_pixel_put(record->mlx, record->win, curr_x, curr_y, 0xFFFFFF);
+		mlx_pixel_put(&record->data->mlx, record->win, curr_x, curr_y, 0xFFFFFF);
 		curr_x += x_inc;
 		curr_y += y_inc;
 	}

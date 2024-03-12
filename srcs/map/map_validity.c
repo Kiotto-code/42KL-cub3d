@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:49:19 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/07 18:47:41 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/11 23:01:24 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int	map_reading(t_book *record)
 		ft_putendl_fd("invalid file sequence format as subject required", 2);
 		return (FAIL);
 	}
+	// file_data_recording(record);
 	if (map_valid_wall_surround(record) == FAIL)
 		return (ft_putendl_fd("invalid map as not wall surrounded", 2), FAIL);
 	return (SUCCESS);

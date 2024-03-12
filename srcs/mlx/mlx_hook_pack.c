@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:57:12 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/10 23:57:10 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/12 18:31:18 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int handle_key_press(int keycode, void *param) {
 void    hook_pack(t_book *record)
 {
     mlx_hook(record->win, DestroyNotify, NoEventMask, &shut_exit, record);
-	mlx_hook(record->win, KeyPress, KeyPressMask, &key_press, record);
+	mlx_hook(record->win, KeyPress, KeyPressMask, &keypress, record);
 	mlx_hook(record->win, KeyPress, KeyPressMask, &handle_key_press, record);
-	mlx_hook(record->win, MotionNotify, NoEventMask, &handle_mouse_motion, record->mlx);
-    mlx_hook(record->win, MotionNotify, PointerMotionMask, &handle_mouse_motion, record->mlx);
+	mlx_hook(record->win, MotionNotify, NoEventMask, &handle_mouse_motion, record);
+    mlx_hook(record->win, MotionNotify, PointerMotionMask, &handle_mouse_motion, record);
 }

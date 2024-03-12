@@ -12,23 +12,74 @@
 
 #include "cub3d.h"
 
-// char	**ft_subarr(char **arr, size_t start, size_t end)
-// {
-// 	char	**ret;
-// 	size_t		arr_len;
+int	get_player_view(t_book *record, t_map *map_table)
+{
+	int i;
+	int j;
+	char **map;
+	char *str;
 
-// 	if (!arr)
-// 		return (NULL);
-// 	arr_len = end - start;
-// 	ret = ft_calloc(sizeof(char *) * (arr_len + 1));
-// 	ret[arr_len] = 0;
-// 	while (--arr_len >= 0 && arr_len >= start && arr[arr_len])
-// 	{
-// 		ret[arr_len] = ft_strdup(arr[end]);
-// 		end--;
-// 	}
-// 	return (ret);
-// }
+	i = 0;
+	map = record->map;
+	while (map[i])
+	{
+		j = 0;
+		str = map[i];
+		while (str[j])
+		{
+			if (ft_strchr("NSWE", str[j]))
+			{
+				map_table->pv = str[j];
+				map_table->px = j;
+				map_table->py = i;
+				return (SUCCESS);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (FAIL);
+}
+
+
+int file_data_recording(t_book *record)
+{
+	char **elem;
+	char **split;
+	t_map *map;
+	int i;
+
+	i = 0;
+	map = record->map_table;
+	elem = record->elem_record;
+	while (*elem)
+	{
+		split = ft_split(*elem, ' ');
+		if (ft_strcmp(split[0], "NO") == SUCCESS)
+			map->meta_data[NO] = ft_strdup(split[1]);
+		else if (ft_strcmp(split[0], "SO") == SUCCESS)
+			map->meta_data[SO] = ft_strdup(split[1]);
+		else if (ft_strcmp(split[0], "WE") == SUCCESS)
+			map->meta_data[WE] = ft_strdup(split[1]);
+		else if (ft_strcmp(split[0], "EA") == SUCCESS)
+			map->meta_data[EA] = ft_strdup(split[1]);
+		else if (ft_strcmp(split[0], "F") == SUCCESS)
+			map->meta_data[F] = ft_strdup(split[1]);
+		else if (ft_strcmp(split[0], "C") == SUCCESS)
+			map->meta_data[C] = ft_strdup(split[1]);
+		free(split);
+		elem++;
+	}
+	while (i < 6)
+	{
+		if (map->meta_data[i] == NULL)
+			return (FAIL);
+		i++;
+	}
+	get_colors(record->map_table);
+	get_player_view(record, record->map_table);
+	return (SUCCESS);
+}
 
 int	file_data_reading(t_book *record)
 {
@@ -48,7 +99,6 @@ int	file_data_reading(t_book *record)
 	}
 	record->elem_record = ft_subarr(content, 0, i-1);
 	ft_print_arr(record->elem_record, "record->elem_record");
-	pause();
 	content += i;
 	record->map = ft_duparr(content);
 	// pause();

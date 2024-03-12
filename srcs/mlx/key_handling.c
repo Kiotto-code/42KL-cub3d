@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 23:55:50 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/11 14:42:12 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/12 17:11:46 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,33 @@
 // 		data->keystate.c = 1;
 // 	return (0);
 // }
+
+void	open_close(int keycode, t_data *data)
+{
+	int	pov;
+	int	cell_x;
+	int	cell_y;
+	// const char door_state[2] = {'C', 'O'};
+
+	if (keycode != 14)
+		return ;
+	cell_x = data->position->x_cell;
+	cell_y = data->position->y_cell;
+	pov = data->position->pov;
+	if (pov <= 45 || pov >= 315)
+		cell_y--;
+	else if (pov > 45 && pov < 135)
+		cell_x++;
+	else if (pov > 135 && pov < 225)
+		cell_y++;
+	else if (pov > 225 && pov < 315)
+		cell_x--;
+	if (data->map->map_tab[cell_y][cell_x] == 'C')
+		data->map->map_tab[cell_y][cell_x] = 'O';
+	else if (data->map->map_tab[cell_y][cell_x] == 'O')
+		data->map->map_tab[cell_y][cell_x] = 'C';
+	// if 
+}
 
 int	keypress(int keycode, t_data *data)
 {
@@ -97,14 +124,14 @@ int	keyrelease(int keycode, t_data *data)
 	else if (keycode == 2)
 		data->keystate.d = 0;
 	else if (keycode == 124)
-		data->keystate.l = 0;
+		data->keystate.left = 0;
 	else if (keycode == 123)
-		data->keystate.r = 0;
+		data->keystate.right = 0;
 	else if (keycode == 49)
-		data->keystate.q = 0;
-	else if (keycode == 35)
-		data->keystate.o = 0;
-	else if (keycode == 8)
-		data->keystate.c = 0;
+		data->keystate.space = 0;
+	// else if (keycode == 35)
+	// 	data->keystate.click = 0;
+	// else if (keycode == 8)
+	// 	data->keystate.c = 0;
 	return (0);
 }

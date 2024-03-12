@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 02:04:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/11 14:48:30 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/12 22:17:07 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,46 +42,28 @@ void	run_game(t_book *record)
 	t_position	position;
 	t_ray		rays[RAY_NUM];
 	t_data		data;
-	// t_mlx		mlx;
 
-	// exit(0);
 	record->data = &data;
 	data.map = record->map_table;
-	data.mlx = record->mlx;
-	store(record);
+	data.position = &position;
+	data.table = &table;
+	data.ray = rays;
+	
 	full_data(&data, &table, &position, rays);
 	data_initialize(&data, &table, &position);
-	ft_init_mlx(record->mlx);
+	ft_init_mlx(&data.mlx);
 	get_image(&data);
 	init_keystate(&data);
-	// open_image(record);
-	// drawing(t_data *data);
+	weapon_install(&data);
+	// start_game(&data);
 }
 
-// int	start_exec(t_map *map)
-// {
-// 	t_table		table;
-// 	t_position	position;
-// 	t_ray		rays[N_RAY];
-// 	t_data		data;
-// 	t_mlx		mlx;
+void record_init(t_book *record)
+{
+	record->map_table = (t_map *)malloc(sizeof(t_map));
+	record->winsize = (t_coor *)malloc(sizeof(t_coor));
 
-// 	data.table = &table;
-// 	data.ray = rays;
-// 	data.position = &position;
-// 	data.ray_h = 0;
-// 	data.map = map;
-// 	data.mlx = &mlx;
-// 	pre_exec(&data, &table, &position);
-// 	ft_init_mlx(&mlx);
-// 	get_image(&data);
-// 	init_keystate(&data);
-// 	get_gun(&data);
-// 	drawing(&data);
-// 	hooking(&mlx, &data);
-// 	return (1);
-// }
-
+}
 
 int	main(int ac, char **av)
 {
@@ -92,18 +74,11 @@ int	main(int ac, char **av)
 	if (ft_strcmp(ft_strend(av[1], 4), ".cub") != 0)
 		ft_error("WRONG FILE EXTENSION", 2);
 	record = (t_book){0};
+	record_init(&record);;
 	record.file = ft_strdup(av[1]);
 	if (map_reading(&record) == FAIL)
 		ft_error(RED"The map is not valid"RESET, FAIL);
-	// store(&record);
-	// record.mlx = mlx_init();
+	file_data_recording(&record);
 	run_game(&record);
 	
-	// open_image(&record);
-	
-	// printf("\n\n"BG_BRIGHT_PURPLE"record.file_content HERE!!"RESET"\n\n");
-	// map_print(record.file_content);
-	// printf("\n\n"BG_BRIGHT_PURPLE"record.map HERE!!"RESET"\n\n");
-	// map_print(record.map);
-	// mlx_destroy_display(record.mlx);
 }

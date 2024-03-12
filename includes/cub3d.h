@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:50:04 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/11 14:42:02 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/12 21:37:03 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,48 +59,23 @@
 
 typedef struct s_coor
 {
-	int	y;
-	int	x;
+	int				y;
+	int				x;
 }	t_coor;
-
-// typedef struct s_object
-// {
-// 	void	*img;
-// 	int		width;
-// 	int		height;
-// }	t_object;
 
 typedef struct s_line_param
 {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
+	int				x0;
+	int				y0;
+	int				x1;
+	int				y1;
 }	t_line_param;
 
-// typedef struct s_map
-// {
-// 	char			**map_tab;
-// 	char			*map_name; //map path
-// 	int				map_h;
-// 	int				map_w;
-// 	int				map_vh;
-// 	int				map_vw;
-// 	int				pn;
-// 	int				px;
-// 	int				py;
-// 	int				pv;
-// 	char			*meta_data[6];
-// 	int				flr[3]; //floor color
-// 	int				cl[3]; //ceiling color
-// 	unsigned long	int_f; //floor color in hexadecimal
-// 	unsigned long	int_c; //ceiling color in hexadecimal
-// }	t_map;
 
 typedef struct s_map
 {
 	char			**map_tab;
-	char			*map_name;
+	const char		*map_name;
 	int				map_h;
 	int				map_w;
 	int				map_vh;
@@ -109,9 +84,9 @@ typedef struct s_map
 	int				px;
 	int				py; 
 	int				pv; //pn = player number, px = player x, py = player y, pv = player pov
-	char			*meta_data[6]; //meta_data[0] = NO, meta_data[1] = SO, meta_data[2] = WE, meta_data[3] = EA, meta_data[4] = F, meta_data[5] = C
-	int				flr[3];
-	int				cl[3]; //flr and cl are the same as int_f and int_c but in decimal
+	char			*meta_data[7]; //meta_data[0] = NO, meta_data[1] = SO, meta_data[2] = WE, meta_data[3] = EA, meta_data[4] = F, meta_data[5] = C
+	int				f_color[3];
+	int				c_color[3]; //flr and cl are the same as int_f and int_c but in decimal
 	unsigned long	int_f;
 	unsigned long	int_c; //int_f and int_c are the same as flr and cl but in hex
 }	t_map;
@@ -119,159 +94,108 @@ typedef struct s_map
 
 typedef struct s_image
 {
-	void	*img;
-	char	*addr; //data
-	char	**d_arr;
-	char	*path;
-	int		bits_per_pixel;
-	int		line_length; //bytes per row
-	int		endian;
-	int		width; //x
-	int		height; //y
+	void			*img;
+	int				*addr; //data
+	int				bits_per_pixel;
+	int				line_length; //bytes per row
+	int				endian;
+	int				x; //width
+	int				y; //height
 }	t_image;
 
 typedef struct s_sprite
 {
-	t_image	n_img;
-	t_image	s_img;
-	t_image	e_img;
-	t_image	w_img;
-	t_image	o_door;
-	t_image	c_door;
-	t_image	side;
+	t_image			n_img;
+	t_image			s_img;
+	t_image			e_img;
+	t_image			w_img;
+	t_image			o_door;
+	t_image			c_door;
+	t_image			side;
 }	t_sprite;
 
 typedef struct s_table
 {
-	double	*tan_table;
-	double	*cos_table;
-	double	*sin_table;
+	double			*tan_table;
+	double			*cos_table;
+	double			*sin_table;
 }				t_table;
 
 typedef struct s_position
 {
-	int		x_cell; //player position
-	int		y_cell; //player position
-	double	virtual_px; //virtual player position
-	double	virtual_py; //virtual player position
-	double	pov; //player point of view
-	t_map	*map;
+	int				x_cell;			//player position
+	int				y_cell;			//player position
+	double			virtual_px;		//virtual player position
+	double			virtual_py;		//virtual player position
+	double			pov;			//player point of view
+	t_map			*map;
 }	t_position;
 
 typedef struct s_ray
 {
-	int			door;
-	int			first;
-	int			v_skip;
-	int			h_skip;
-	double		x_save;
-	double		y_save;
-	double		ray_pov;
-	int			index;
-	double		xi ;
-	double		yi ;
-	double		xbound ;
-	double		ybound;
-	int			v_hit;
-	int			h_hit;
-	double		v_distance;
-	double		h_distance;
-	double		x_step;
-	double		y_step;
-	int			quadrant;
-	int			xcell_v;
-	int			ycell_v;
-	int			xcell_h;
-	int			ycell_h;
-	double		save_distance;
-	double		ray_h;
-	t_position	*player;
+	int				door;
+	int				first;
+	int				v_skip;
+	int				h_skip;
+	double			x_save;
+	double			y_save;
+	double			ray_pov;
+	int				index;
+	double			xi ;
+	double			yi ;
+	double			xbound ;
+	double			ybound;
+	int				v_hit;
+	int				h_hit;
+	double			v_distance;
+	double			h_distance;
+	double			x_step;
+	double			y_step;
+	int				quadrant;
+	int				xcell_v;
+	int				ycell_v;
+	int				xcell_h;
+	int				ycell_h;
+	double			save_distance;
+	double			ray_h;
+	t_position		*player;
 }				t_ray;
-
-//fucking YOU IDIOT PON PON
-// typedef struct s_player
-// {
-// 	float	x;
-// 	float	y;
-// 	float	angle;
-// 	float	delta_x;
-// 	float	delta_y;
-// }	t_player;
 
 typedef struct s_key
 {
-	int	w;
-	int	a;
-	int	s;
-	int	d;
-	int	left;
-	int	right;
-	int	click;
-	int	space;
-	int	esc;
+	int				w;
+	int				a;
+	int				s;
+	int				d;
+	int				left;
+	int				right;
+	int				click;
+	int				space;
+	int				esc;
 }	t_key; // key_state
-
-// typedef struct s_keystate
-// {
-// 	int	tir;
-// 	int	w;
-// 	int	a;
-// 	int	s;
-// 	int	d;
-// 	int	r;
-// 	int	l;
-// 	int	q;
-// 	int	esc;
-// 	// int	o;
-// 	// int	c;
-// 	// int	run;
-// }	t_keystate;
-
-typedef struct s_imgdata
-{
-	void	*img;
-	int		*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		x;
-	int		y;
-}	t_texter;
-
-// typedef struct s_images
-// {
-// 	t_texter	n_img;
-// 	t_texter	s_img;
-// 	t_texter	e_img;
-// 	t_texter	w_img;
-// 	t_texter	o_door;
-// 	t_texter	c_door;
-// 	t_texter	side;
-// }	t_images;
-
 
 typedef struct s_mlx
 {
-	void		*mlx;
-	void		*img;
-	void		*win;
-	void		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	t_sprite	texters;
+	void			*mlx;
+	void			*img;
+	void			*win;
+	void			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	t_sprite		texters;
 }	t_mlx;
 
 typedef struct s_data
 {
-	t_mlx			*mlx;
+	t_mlx			mlx;
 	t_map			*map;
 	t_table			*table;
 	t_ray			*ray;
 	t_position		*position;
 	t_key			keystate;
 	t_line_param	line_param;
-	char			*gun[25];
+	char			*weapon[25];
 	int				gun_x;
 	int				gun_y;
 	int				ray_w;
@@ -289,19 +213,14 @@ typedef struct s_data
 typedef struct s_book
 {
 	t_data			*data;
-	t_map			*map_table;
-	void			*mlx;//mlx_init
 	void			*win;//mlx_new_window
-	// t_coor			winsize;
-	t_coor	*winsize;
 	unsigned int	winfps;
 	const char		*file;//file_name
 	char			**file_content;
-	// char			*elem_record[100];
 	char			**elem_record;
 	char			**map;
-
-	
+	t_coor			*winsize;		//dynamic allocation
+	t_map			*map_table;		//dynamic allocation
 	t_coor			line_initial;
 	int				line_steps;
 
@@ -312,6 +231,15 @@ typedef struct s_book
 enum Status {
   SUCCESS,
   FAIL,
+};
+
+enum {
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
 };
 
 enum e_x11events
@@ -384,20 +312,21 @@ enum e_x11masks
 };
 
 //map_calidity.c
-int	map_valid_wall_surround(t_book *record);
-int	map_reading(t_book *record);
+int		map_valid_wall_surround(t_book *record);
+int		map_reading(t_book *record);
 
 //file_data_reading.c
-int	file_data_reading(t_book *record);
+int		file_data_reading(t_book *record);
+int		file_data_recording(t_book *record);
 
 //cb3d_printer.c
-int map_print(char **db_arr);
+int		map_print(char **db_arr);
 
 //mlx_window.c
 void	open_image(t_book *record);
 
 //mlx_window.c
-int    image_update(t_book *record);
+int		image_update(t_book *record);
 void	ft_init_mlx(t_mlx *mlx);
 
 //mlx_line.c
@@ -420,6 +349,11 @@ void	get_image(t_data *data);
 void	ft_init_mlx(t_mlx *mlx);
 
 //key_handling.c
-int	keypress(int keycode, t_data *data);
+int		keypress(int keycode, t_data *data);
+
+int		store(t_book *record);
+int		get_colors(t_map *map);
+void	weapon_install(t_data *data);
+void	start_game(t_data *data);
 
 #endif

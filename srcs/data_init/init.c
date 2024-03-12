@@ -6,12 +6,21 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:08:42 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/10 23:52:27 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/12 22:25:25 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3d.h"
 
+void	weapon_install(t_data *data)
+{
+	data->weapon[0] = "./gun/0.xpm";
+	data->weapon[1] = "./gun/1.xpm";
+	data->weapon[2] = "./gun/2.xpm";
+	data->weapon[3] = "./gun/3.xpm";
+	data->weapon[4] = "./gun/4.xpm";
+
+}
 void	create_trigonometric_tables(int narc, t_table *table, int i)
 {
 	double	angle;
@@ -39,14 +48,8 @@ void	create_trigonometric_tables(int narc, t_table *table, int i)
 
 void	init_keystate(t_data *data)
 {
-	data->keystate.w = 0;
-	data->keystate.a = 0;
-	data->keystate.s = 0;
-	data->keystate.d = 0;
-	data->keystate.left = 0;
-	data->keystate.right = 0;
-	data->keystate.click = 0;
-	data->keystate.space = 0;
+	data->keystate = (t_key){0};
+	data->line_param = (t_line_param){0};
 }
 
 void	init_player_position(t_map *map, t_position *play_pos)
@@ -57,6 +60,8 @@ void	init_player_position(t_map *map, t_position *play_pos)
 	player_view = map->pv;
 	play_pos->x_cell = map->px;
 	play_pos->y_cell = map->py;
+	printf("y_cell: %d\n", play_pos->y_cell);
+	printf("x_cell: %d\n", play_pos->x_cell);
 	play_pos->virtual_px = play_pos->x_cell * CELL_SIZE + CELL_SIZE / 2; //virtual position -> center of the cell
 	play_pos->virtual_py = play_pos->y_cell * CELL_SIZE + CELL_SIZE / 2;
 	if (player_view == 'N')
