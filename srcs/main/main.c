@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 02:04:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/12 22:17:07 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/13 19:05:48 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ int	main(int ac, char **av)
 	record.file = ft_strdup(av[1]);
 	if (map_reading(&record) == FAIL)
 		ft_error(RED"The map is not valid"RESET, FAIL);
-	file_data_recording(&record);
+	// ft_print_arr(record.map, "check: map:");
+	if (file_data_recording(&record) == FAIL)
+		ft_error(RED"file data recording failed"RESET, FAIL);
 	run_game(&record);
 	
 }

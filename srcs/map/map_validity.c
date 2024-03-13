@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:49:19 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/11 23:01:24 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/13 19:34:09 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	all_wall(char *str)
 	while (*str++ && status == SUCCESS)
 	{
 		// printf(GREEN"mapline here %c\n", *str);
-		if (*str == '\0' | *str == ' ')
+		if (*str == '\0')
 			break ;
 		if (*str != '1')
+		if (ft_strchr("1 ", *str) == NULL)
 		{
 			status |= FAIL;
 			printf(RED"check: %s;ine break here\n", str);

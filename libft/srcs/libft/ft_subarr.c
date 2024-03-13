@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 00:51:53 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/06 15:18:45 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/13 18:50:16 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ char	**ft_subarr(char **arr, int start, int end)
 	// printf(GREEN"arr[0]: %s\n"RESET,arr[0]);
 	while (--range_len >= 0 && end >= start)
 	{
-		printf(GREEN"range_len: %d\n"RESET,range_len);
-		printf(GREEN"end: %d\n"RESET,end);
-		printf(GREEN"arr[end]: %s\n"RESET,arr[end]);
+		// printf(GREEN"range_len: %d\n"RESET,range_len);
+		// printf(GREEN"end: %d\n"RESET,end);
+		// printf(GREEN"arr[end]: %s\n"RESET,arr[end]);
 		// printf(GREEN"ret[range_len]: %s\n"RESET,ret[range_len]);
 		// printf(GREEN"arr[end]: %s\n"RESET,arr[end]);
 		ret[range_len] = ft_strdup(arr[end]);

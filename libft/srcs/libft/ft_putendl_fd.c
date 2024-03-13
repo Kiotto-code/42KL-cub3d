@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:45:51 by yichan            #+#    #+#             */
-/*   Updated: 2024/01/09 18:31:10 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/13 18:46:23 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (!s)
-		return ;
+	// if (!s)
+	// 	return ;
 	ft_printf(RED);
 	while (*s)
 	{
