@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 01:57:51 by yichan            #+#    #+#             */
-/*   Updated: 2023/08/16 03:19:21 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/14 16:25:53 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,23 @@ static size_t	count_words(char const *s, char c)
 char	*ft_remove(char *input, char c)
 {
 	int		i;
+	int		j;
 	int		remain_size;
 	char	*ret;
 
-	remain_size = count_words(input, c);
-	ret = ft_calloc(sizeof(char) * remain_size);
-	i = 0;
+	remain_size = ft_strlen(input) - count_words(input, c);
+	printf("remain_size : %d\n", remain_size);
+	ret = ft_calloc(sizeof(char) * (remain_size +1));
+	if (!ret)
+		return (NULL);
+	i = -1;
+	j = -1;
 	while (input[++i])
 	{
 		if (input[i] != c)
-			ret[i] = input[i];
+			ret[++j] = input[i];
 	}
+	printf("ret : %s\n", ret);
 	ft_free(input);
 	return (ret);
 }

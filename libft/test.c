@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:58:30 by yichan            #+#    #+#             */
-/*   Updated: 2023/08/20 02:33:31 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/14 16:29:01 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ double	*str2arr(char	*num_arr_in_str)
 
 int	main(void)
 {
-	char	*str = ft_strdup("123,345,456");
-	double	*ret = str2arr(str);
+	const char		*str = ft_strdup("123,345,456");
+	const double	*ret = str2arr(str);
 
 	for (int i = 0; i<3; i++)
 		printf("here; %f\n", ret[i]);

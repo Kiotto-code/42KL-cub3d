@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlead.c                                       :+:      :+:    :+:   */
+/*   enum.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 18:58:05 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/14 15:26:24 by yichan           ###   ########.fr       */
+/*   Created: 2024/03/17 20:16:59 by yichan            #+#    #+#             */
+/*   Updated: 2024/03/17 21:09:37 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#pragma once
 
-// check if s2 is head of string s1;
+enum Status {
+  SUCCESS,
+  FAIL,
+};
 
-int	ft_strlead(const char *s1, const char *s2)
-{
-	size_t	it;
-
-	it = 0;
-	while (s1[it] && (s1[it] == s2[it] && s2[it]))
-		it++;
-	if (s2[it] == '\0')
-		return (1);
-	return (0);
-}
-// printf(BLUE"success\n"RESET);
+enum {
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
+	END,
+};

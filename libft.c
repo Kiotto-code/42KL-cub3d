@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlead.c                                       :+:      :+:    :+:   */
+/*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 18:58:05 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/14 15:26:24 by yichan           ###   ########.fr       */
+/*   Created: 2024/03/08 23:07:40 by etlaw             #+#    #+#             */
+/*   Updated: 2024/03/17 20:09:45 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "raycast.h"
 
-// check if s2 is head of string s1;
 
-int	ft_strlead(const char *s1, const char *s2)
-{
-	size_t	it;
+// int	ft_is_whitespace(int c)
+// {
+// 	if (c == ' ' || c == '\t' || c == '\v'
+// 		|| c == '\n' || c == '\f' || c == '\r')
+// 		return (1);
+// 	return (0);
+// }
 
-	it = 0;
-	while (s1[it] && (s1[it] == s2[it] && s2[it]))
-		it++;
-	if (s2[it] == '\0')
-		return (1);
-	return (0);
-}
-// printf(BLUE"success\n"RESET);
+// int	ft_strchr(char c, char *s)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		if (s[i] == c)
+// 			return (1);
+// 		i++;
+// 	}
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:34:33 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/06 14:46:51 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/14 16:28:46 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s1)
 	int		b;
 	char	*res;
 
-	if(!s1)
+	if (!s1)
 		return (NULL);
 	a = ft_strlen(s1);
 	b = 0;

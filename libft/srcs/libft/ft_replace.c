@@ -6,13 +6,13 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 21:50:01 by yichan            #+#    #+#             */
-/*   Updated: 2023/08/05 23:09:09 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/14 15:44:59 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_replace(char **s, const char *old, const char *new, int start)
+int	ft_replace(char **s, const char *old, const char *new, int start)
 {
 	int		i;
 	char	*str;
@@ -22,11 +22,13 @@ void	ft_replace(char **s, const char *old, const char *new, int start)
 
 	if (old == NULL || new == NULL || s == NULL \
 		|| ft_strlen(*s) < (size_t)start)
-		return ;
+		return (-1);
 	i = start;
 	str = *s;
 	while (str[i] && !ft_strlead(str + i, old))
 		i++;
+	if (str[i] == '\0')
+		return (-1);
 	first = ft_substr(str, 0, i);
 	third = ft_substr(str, ft_strlen(old)+i, \
 		ft_strlen(str) - i - ft_strlen(old));
@@ -35,4 +37,6 @@ void	ft_replace(char **s, const char *old, const char *new, int start)
 	*s = ft_strjoin(temp, third);
 	ft_free(temp);
 	ft_free(third);
+	ft_free(first);
+	return (i);
 }

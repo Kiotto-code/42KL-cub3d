@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:58:30 by yichan            #+#    #+#             */
-/*   Updated: 2024/02/02 13:32:51 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/14 15:45:29 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@
 
 int main()
 {
-	char **arr = ft_split("hello world", ' ');
-	char **subarr = ft_subarr(arr, 0, 1);
-	ft_print_arr(arr, "arr");
-	ft_printf("\n");
-	ft_print_arr(subarr, "subarr");
+	char *str = ft_strdup("k");
+	// ft_replace_all(&str, "\t", " ", 0);
+	ft_replace_all(&str, "o", "k", 0);
+	// char *ret = ft_remove(str, ' ');
+	printf("ret : %s\n", str);
+	system("leaks -q debugrun");
 	return (0);
 }
 
