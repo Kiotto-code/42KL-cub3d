@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 01:12:46 by etlaw             #+#    #+#             */
-/*   Updated: 2024/03/17 21:36:07 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/20 01:50:53 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_player_pos(char **map, t_player *player, char pv)
 	player->pos.y = (player->map_pos_y * CELL_SIZE) + (CELL_SIZE / 2);
 	// sets the actual map
 	player->map = map;
+	(void)map;
 }
 
 //keystate could be removed
@@ -47,12 +48,12 @@ void	init_keystate(t_keystate	*keystate)
 	keystate->esc = 0;
 }
 
-void	init_mlx(t_mlx *mlx)
+void	init_mlx(t_image *mlx)
 {
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, WIN_W, WIN_H, "cub3D");
 	mlx->img = mlx_new_image(mlx->mlx, WIN_W, WIN_H);
-	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
+	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp,
 			&mlx->line_length, &mlx->endian);
 }
 
@@ -72,31 +73,53 @@ void	init_constants(t_data *data)
 	data->constant->tau = 2 * M_PI;
 }
 
+static void		game_mlx_init(t_image *mlx, t_book *record)
+{
+	// record->game = malloc(sizeof(t_game));
+	record->game->mlx = mlx->mlx;
+	record->game->win.img = mlx->win;
+	record->game->frame.img = mlx->img;
+	record->game->frame.addr = mlx->addr;
+	record->game->frame.bpp = mlx->bpp;
+	record->game->frame.line_length = mlx->line_length;
+	record->game->frame.endian = mlx->endian;
+	record->game->start_time = clock();
+	(void)mlx;
+	(void)record;
+}
 
 void init(t_data *data, t_book *record)
 {
-	t_mlx		mlx;
+	t_image		mlx;
 	t_keystate	keystate;
 	t_player	player;
 	t_ray		*ray;
 	t_constants constant;
 
-	data->cell_size = CELL_SIZE;
+	// ft_print_arr(record->map, PURPLE"Check: "RESET);
+	// pause();
+	ray = malloc(sizeof(t_ray) * NUM_RAYS);
+	record->game->rays = ray;
+	record->data = data;
 	data->mlx = &mlx;
-	ray = malloc(sizeof(t_ray) * N_RAY);
-	data->rays = ray;
+	printf(RED"mlx: %p\n"RESET, &mlx);
 	data->keystate = &keystate;
 	data->player = &player;
+	data->rays = ray;
 	data->constant = &constant;
+	ft_print_arr(record->map, PURPLE"Check: "RESET);
 	data->map = record->map;
+	// ft_print_arr(data->map, PURPLE"Check: "RESET);
+	data->cell_size = CELL_SIZE;
 	// need parser to set height and width on the map
-	data->map_w = 11;
-	data->map_h = 11;
+	// data->map_w = 11;
+	// data->map_h = 11;
 	
 	// init_player needs more changes
 	init_constants(data);
-	init_player_pos(data->map, &player, N); // need the parser to put which direction the player is at
+	init_player_pos(data->map, &player, 'N'); // need the parser to put which direction the player is at
 	init_mlx(&mlx);
+	game_mlx_init(&mlx, record);
 	init_keystate(&keystate);
-	hooking(&mlx, data);
+	hooking(&mlx, record);
 }

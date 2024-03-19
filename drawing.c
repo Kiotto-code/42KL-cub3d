@@ -6,21 +6,34 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:42:58 by etlaw             #+#    #+#             */
-/*   Updated: 2024/03/17 22:26:04 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/20 01:57:05 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-void	ft_mlx_put_px(t_mlx *mlx, int x, int y, unsigned long color)
+void	ft_mlx_put_px(t_image *mlx, int x, int y, unsigned int color)
 {
 	char	*dst;
 
 	if (x >= WIN_W || y >= WIN_H || x < 0 || y < 0)
 		return ;
-	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
 	*(unsigned int *)dst = color;
+	// printf("mlx->line_length: %d\n", mlx->line_length);
+	// printf("mlx->bits_per_pixel: %d\n", mlx->bpp);
+	// pause();
 }
+
+// void	ft_mlx_put_px(t_mlx *mlx, int x, int y, unsigned long color)
+// {
+// 	char	*dst;
+
+// 	if (x >= WIN_W || y >= WIN_H || x < 0 || y < 0)
+// 		return ;
+// 	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+// 	*(unsigned int *)dst = color;
+// }
 
 void	color_sqr(t_data *data, int x, int y, unsigned int color)
 {
@@ -43,6 +56,7 @@ void	color_sqr(t_data *data, int x, int y, unsigned int color)
 		}
 		xc++;
 	}
+	// printf("xc: %d, yc: %d\n", xc, yc);
 }
 
 // void	put_rays(t_data *data, double diff)
@@ -69,7 +83,7 @@ void	color_sqr(t_data *data, int x, int y, unsigned int color)
 // 	}
 // }
 
-void	ft_color_win(t_data *data, t_mlx *mlx, int ray_h)
+void	ft_color_win(t_data *data, t_image *mlx, int ray_h)
 {
 	(void)data;
 	int	x;
@@ -106,6 +120,8 @@ void	put_map(t_data *data)
 	else
 		data->cell_size = 10; // else map will be this big
 	y = 0;
+	// ft_print_arr(data->map, "Check: ");
+	// pause();
 	while (data->map[y])
 	{
 		x = 0;
@@ -123,6 +139,9 @@ void	put_map(t_data *data)
 	// put_rays(data, (double)CELL_SIZE / data->cell_size);
 	mlx_put_image_to_window(data->mlx->mlx,
 		data->mlx->win, data->mlx->img, 0, 0);
+	printf(RED"mlx 2: %p\n"RESET, data->mlx);
+	// pause();
+	// printf("check: put_map\n");
 }
 // void	put_map(t_data *data)
 // {
@@ -153,11 +172,11 @@ void	put_map(t_data *data)
 // 		data->mlx->win, data->mlx->img, 0, 0);
 // }
 
-void drawing(t_data *data)
-{
-	raycast(data); // cast rays
-	// print_img(data); // still testing
-	ft_color_win(data, data->mlx, 0); // colours green for the whole map
-	put_map(data); // puts minimap
-}
+// void drawing(t_data *data)
+// {
+// 	raycast(data->); // cast rays
+// 	// print_img(data); // still testing
+// 	ft_color_win(data, data->mlx, 0); // colours green for the whole map
+// 	put_map(data); // puts minimap
+// }
 

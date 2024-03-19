@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:49:53 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/17 21:11:24 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/19 01:19:52 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int	get_colors(t_map *map)
 }
 
 
-int	store(t_book *record)
-{
-	t_map	*map;
+// int	store(t_book *record)
+// {
+// 	t_map	*map;
 
-	map = record->map_table;
-	map->map_tab = record->map;
-	map->map_name = record->file;
+// 	map = record->map_table;
+// 	map->arr = record->map;
+// 	map->map_name = record->file;
 	
-	if (!get_colors(map))
-		return (0);
+// 	if (!get_colors(map))
+// 		return (0);
 
-	return (1);
-}
+// 	return (1);
+// }

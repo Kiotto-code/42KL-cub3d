@@ -168,5 +168,8 @@ int	file_data_reading(t_book *record)
 	ft_print_arr(record->map, "record->map");
 	if (check_map_holes(record->map) == FAIL)
 		return (FAIL);
+	// (record->map)[2][2] = '1';
+	// ft_print_arr(record->map, "check: g->map.arr");
+	// pause();
 	return (SUCCESS);
 }

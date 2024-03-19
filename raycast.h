@@ -20,6 +20,8 @@
 # include "color.h"
 # include "libft/includes/libft.h"
 # include "enum.h"
+# include "macro.h"
+# include "struct.h"
 
 
 # define WIN_W 1080 // screen width
@@ -27,11 +29,41 @@
 # define CELL_SIZE 500
 # define RAY_ANGLE_DIFF 0.05555555555 // each ray distance within player pov (60 / 1080)
 # define MAX_DEPTH 100
-# define N_RAY 1080 // number of ray being casted
-# define N 0
-# define E 90
-# define S 180
-# define W 270
+# define N_RAY NUM_RAYS // number of ray being casted
+
+
+# define N_OF_SOUNDS 11
+
+# define N_OF_OBJECTS 19
+# define OBJECTS_MAX_FRAME 9
+
+# define N_OF_WEAPONS 2
+# define WEAPONS_MAX_FRAME 6
+
+# define WEAPON_KNIFE_FRAMES 4
+# define WEAPON_SHOTGUN_FRAMES 6
+
+# define PLAYER 99
+
+
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
+
+typedef struct s_assets
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	t_color	floor;
+	t_color	ceiling;
+}	t_assets;
+
 
 // enum e_trigo 
 // {
@@ -57,16 +89,18 @@ enum
 };
 
 
-typedef struct s_coor
-{
-	int				y;
-	int				x;
-}	t_coor;
+// typedef struct s_coor
+// {
+// 	int				y;
+// 	int				x;
+// }	t_coords;
 
 typedef struct s_iterators
 {
 	int	i;
 	int	j;
+	int	k;
+	int	l;
 }	t_iterators;
 
 
@@ -83,17 +117,28 @@ typedef struct s_keystate
 	int	esc;
 }	t_keystate;
 
-typedef struct s_mlx
+typedef struct s_image
 {
 	void		*mlx;
-	void		*img;
+	void		*img; //img
 	void		*win;
 	void		*addr;
-	int			bits_per_pixel;
+	int			bpp; //bits per pixel
 	int			line_length;
 	int			endian;
 	// t_texters	texters;
-}	t_mlx;
+}	t_image; //t_image
+// typedef struct s_image
+// {
+// 	void		*mlx;
+// 	void		*img; //img
+// 	void		*win;
+// 	void		*addr;
+// 	int			bits_per_pixel;
+// 	int			line_length;
+// 	int			endian;
+// 	// t_texters	texters;
+// }	t_image; //t_image
 
 // typedef struct s_position
 // {
@@ -150,6 +195,20 @@ typedef struct s_player
 }	t_player;
 
 
+// typedef struct s_player
+// {
+// 	t_coords	pos;
+// 	t_coords	map_pos;
+// 	int			width;
+// 	int			height;
+// 	float		angle;
+// 	float		speed;
+// 	float		rot_speed;
+// 	int			turn_direction;
+// 	int			walk_direction;
+// 	int			rotation_direction;
+// }	t_player;
+
 typedef struct s_constants
 {
 	float	frame_rate;
@@ -169,8 +228,12 @@ typedef struct s_constants
 
 typedef struct s_map
 {
-	char			**map_tab;
 	const char		*map_name;
+	int				fd;
+	char			**arr; //without the player
+	// int		**arr;
+	int				width;
+	int				height;
 	int				map_h;
 	int				map_w;
 	int				map_vh;
@@ -187,38 +250,234 @@ typedef struct s_map
 }	t_map;
 
 
+
+// typedef struct s_map
+// {
+// 	char	*path;
+// 	int		fd;
+// 	int		**arr;
+// 	int		width;
+// 	int		height;
+// }	t_map;
+
+typedef struct s_object
+{
+	int			infos[6];
+	int			type;
+	int			state;
+	t_coords	pos;
+	int			frame;
+	bool		animating;
+	clock_t		last_time;
+	float		dist;
+	bool		display;
+	bool		visible;
+}	t_object;
+
+
 typedef struct s_data
 {
-	t_mlx			*mlx;
+	t_image			*mlx;
 	t_keystate		*keystate;
 	t_player		*player;
 	t_ray			*rays;
 	t_constants		*constant;
 	char			**map; // actual map
-	int				map_w; // set map height and width
-	int				map_h;
+	// int				map_w; // set map height and width
+	// int				map_h;
 	int				cell_size;
 
 }	t_data;
 
+// typedef struct s_book
+// {
+// 	t_data			*data;
+// 	t_game			*game;
+// 	void			*win;//mlx_new_window
+// 	unsigned int	winfps;
+// 	const char		*file;//file_name
+// 	char			**file_content;
+// 	char			**elem_record;
+// 	char			**map;
+// 	t_coords		*winsize;		//dynamic allocation
+// 	t_map			*map_table;		//dynamic allocation
+// 	t_coords		line_initial;
+// 	int				line_steps;
+
+	
+// 	t_keystate			key;
+// }	t_book;
+
+// typedef struct s_window
+// {
+// 	void	*img;
+// 	int		width;
+// 	int		heigt;
+// }	t_window;
+
+typedef struct s_error
+{
+	char	*message;
+	int		code;
+}	t_error;
+
+// typedef struct s_color
+// {
+// 	int	r;
+// 	int	g;
+// 	int	b;
+// }	t_color;
+
+typedef struct s_tips
+{
+	bool		open_door;
+	bool		game_over;
+}	t_tips;
+
+typedef struct s_mouse
+{
+	bool		left;
+	bool		right;
+	bool		enabled;
+	int			x;
+	float		angle;
+}	t_mouse;
+
+// typedef struct s_weapon
+// {
+// 	int			type;
+// 	t_image		image[N_OF_WEAPONS][WEAPONS_MAX_FRAME];
+// 	char		*path[N_OF_WEAPONS][WEAPONS_MAX_FRAME];
+// 	t_iterators	dimension[N_OF_WEAPONS];
+// 	int			frame;
+// 	int			n_of_frames[N_OF_WEAPONS];
+// 	size_t		frame_rate[N_OF_WEAPONS];
+// 	clock_t		last_time;
+// 	int			animating;
+// 	t_coords	pos;
+// 	int			damage[N_OF_WEAPONS];
+// 	float		range[N_OF_WEAPONS];
+// 	int			sound[N_OF_WEAPONS];
+// 	bool		collected[N_OF_WEAPONS];
+// }	t_weapon;
+
+
+typedef struct s_texture
+{
+	t_image		sides[4];
+	t_image		health_bar[6];
+	t_image		walls[5];
+	t_image		floor;
+	t_image		ceil;
+	t_image		splash[2];
+	t_image		game_over;
+	t_image		digits[10];
+	// t_weapon	weapon;
+	t_image		object_image[N_OF_OBJECTS][OBJECTS_MAX_FRAME];
+	char		*object_path[N_OF_OBJECTS][OBJECTS_MAX_FRAME];
+	t_iterators	object_dimension[N_OF_OBJECTS];
+	int			object_n_of_frames[N_OF_OBJECTS];
+	size_t		object_frame_rate[N_OF_OBJECTS];
+	clock_t		object_last_time[N_OF_OBJECTS];
+	float		object_scale[N_OF_OBJECTS];
+}	t_texture;
+
+// typedef struct s_game
+// {
+// 	void		*mlx;
+// 	// t_window	win;
+// 	t_map		map;
+// 	t_error		error;
+// 	// t_parsing	parsing;
+// 	// t_assets	assets;
+// 	t_ray		*rays;
+// 	t_player	player;
+// 	t_image		frame;
+// 	clock_t		start_time;
+// 	float		delta_time;
+// 	bool		paused;
+// 	bool		freeze;
+// 	bool		game_over;
+// 	// t_alloc		allocated;
+// 	t_tips		tips;
+// 	t_texture	textures;
+// 	t_object	*objects;
+// 	int			objects_count;
+// 	t_mouse		mouse;
+// 	// t_sound		sound[N_OF_SOUNDS];
+// 	// t_pid		pid;
+// 	t_constants	constants;
+// 	float		*buffer;
+// 	bool		display_map;
+// }	t_game;
+
+typedef struct s_window
+{
+	void	*img;
+	int		width;
+	int		height;
+}	t_window;
+
+// typedef struct s_game
+// {
+// 	void		*mlx;
+// 	t_window	win;
+// 	t_map		map;
+// 	t_error		error;
+// 	// t_parsing	parsing;
+// 	t_assets	assets;
+// 	t_ray		*rays;
+// 	t_player	player;
+// 	t_image		frame;
+// 	clock_t		start_time;
+// 	float		delta_time;
+// 	bool		paused;
+// 	bool		freeze;
+// 	bool		game_over;
+// 	// t_alloc		allocated;
+// 	t_image		textures[4];
+// 	t_constants	constants;
+// }	t_game;
+
+typedef struct s_game
+{
+	void		*mlx;
+	t_window	win;
+	t_map		map;
+	t_error		error;
+	// t_parsing	parsing;
+	t_assets	assets;
+	t_ray		*rays;
+	t_player	player;
+	t_image		frame;
+	clock_t		start_time;
+	float		delta_time;
+	bool		paused;
+	bool		freeze;
+	bool		game_over;
+	// t_alloc		allocated;
+	t_image		textures[4];
+	t_constants	constants;
+}	t_game;
+
 typedef struct s_book
 {
 	t_data			*data;
+	t_game			*game;
 	void			*win;//mlx_new_window
 	unsigned int	winfps;
 	const char		*file;//file_name
 	char			**file_content;
 	char			**elem_record;
 	char			**map;
-	t_coor			*winsize;		//dynamic allocation
+	t_coords		*winsize;		//dynamic allocation
 	t_map			*map_table;		//dynamic allocation
-	t_coor			line_initial;
+	t_coords		line_initial;
 	int				line_steps;
 
 	
 	t_keystate			key;
 }	t_book;
-
 
 // libft.c (tools for cub3d)
 // int	ft_strchr(char c, char *s);
@@ -233,13 +492,14 @@ void print_arr(char **arr);
 void init(t_data *data, t_book *record);
 
 //keyboard.c
-void	hooking(t_mlx *mlx, t_data *data);
-
+void	hooking(t_image *mlx, t_book *record)
+;
 // drawing.c
 void drawing(t_data *data);
 
 // raycast.c
-void	raycast(t_data *data);
+void	raycast(t_game *g);
+void	draw_walls(t_game *g, t_iterators it, float ray_angle);
 
 // map_validity.c
 int	all_wall(char *str);
@@ -256,3 +516,12 @@ int	file_data_reading(t_book *record);
 // store.c
 int	get_colors(t_map *map);
 int	store(t_book *record);
+
+//drawing,c
+void	ft_mlx_put_px(t_image *mlx, int x, int y, unsigned int color);
+void	ft_color_win(t_data *data, t_image *mlx, int ray_h);
+void	put_map(t_data *data);
+
+//utils.c
+unsigned int	create_rgb(t_color color);
+// t_image	get_texture(t_game *g, int ind);·

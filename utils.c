@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 15:42:18 by yichan            #+#    #+#             */
-/*   Updated: 2024/03/19 22:27:49 by yichan           ###   ########.fr       */
+/*   Created: 2023/05/20 01:16:49 by absalhi           #+#    #+#             */
+/*   Updated: 2024/03/19 18:06:43 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "raycast.h"
 
-char	*ft_strchr(const char *s, int c)
+unsigned int	create_rgb(t_color color)
 {
-	c %= 256;
-	if (c == '\0')
-		return (NULL);
-	while ((*s != c) && (*s != '\0'))
-		s++;
-	if (*s == c)
-		return ((char *)s);
-	return (NULL);
+	return (color.r << 16 | color.g << 8 | color.b);
 }
+
+// t_image	get_texture(t_game *g, int ind)
+// {
+// 	if (g->rays[ind].content_hit >= 1 && g->rays[ind].content_hit <= 5)
+// 		return (g->textures.walls[g->rays[ind].content_hit - 1]);
+// 	return (g->textures.walls[0]);
+// }

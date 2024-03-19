@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:03:46 by etlaw             #+#    #+#             */
-/*   Updated: 2024/03/17 20:15:11 by yichan           ###   ########.fr       */
+/*   Updated: 2024/03/19 23:31:07 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@
 // 	return (map);
 // }
 
-typedef struct s_image {
-    void *img;
-    char *addr;
-    int bpp;
-    int line_length;
-    int endian;
-} t_image;
+// typedef struct s_image {
+//     void *img;
+//     char *addr;
+//     int bpp;
+//     int line_length;
+//     int endian;
+// } t_image;
 
 void put_pixel(t_image *img, int x, int y, int color) 
 {
