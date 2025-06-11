@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
+/*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:53:53 by yichan            #+#    #+#             */
-/*   Updated: 2024/04/07 20:59:34 by etlaw            ###   ########.fr       */
+/*   Updated: 2025/06/11 18:29:29 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ double	horizontal_raycast(t_data *data, t_vector direction)
 	double		ratio;
 	t_vecstack	vec;
 
+	vec = (t_vecstack){0};
 	if (direction.y == 0)
 		return (A_VERY_VERY_BIG_NUMMER);
 	vec.dist.y = direction_check(data, direction, vec.dist.y, 1);
@@ -44,6 +45,7 @@ double	vertical_raycast(t_data *data, t_vector direction)
 	double		ratio;
 	t_vecstack	vec;
 
+	vec = (t_vecstack){0};
 	if (direction.x == 0)
 		return (A_VERY_VERY_BIG_NUMMER);
 	vec.dist.x = direction_check(data, direction, vec.dist.x, 0);

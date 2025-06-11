@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 20:31:26 by yichan            #+#    #+#             */
-/*   Updated: 2024/04/08 04:10:41 by yichan           ###   ########.fr       */
+/*   Updated: 2025/03/11 03:55:32 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,27 @@
 
 # if __linux__
 
-#  include "../libs/minilibx-linux/mlx.h"
-#  define ESC 65307
-#  define ZOOM_IN 105
-#  define ZOOM_OUT 111
-#  define ARROW_UP 65362
-#  define ARROW_DWN 65364
-#  define ARROW_LEFT 65361
-#  define ARROW_RIGHT 65363
-#  define SCROLL_DOWN 4
-#  define SCROLL_UP 5
+// #  include "../libs/minilibx-linux/mlx.h"
+#  include "../mlxlinux/mlx.h"
+#  define SPACE 49
+#  define ESC 53
+#  define ZOOM_IN 34
+#  define ZOOM_OUT 31
+#  define ARROW_UP 126
+#  define ARROW_DWN 125
+#  define ARROW_LEFT 123
+#  define SCROLL_DOWN 5
+#  define SCROLL_UP 4
 #  define LEFT_CLICK 1
-#  define RIGHT_CLICK 3
-#  define MIDDLE_CLICK 2
-#  define PLUS 112
-#  define MINUS 109
-#  define W_KEY 25
+#  define RIGHT_CLICK 2
+#  define MIDDLE_CLICK 3
+#  define ARROW_RIGHT 124
+#  define W_KEY 13
 #  define A_KEY 0
 #  define S_KEY 1
 #  define D_KEY 2
+#  define E_KEY 14
+#  define Q_KEY 12
 
 # elif __APPLE__
 

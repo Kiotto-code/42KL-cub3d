@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
+/*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:38:29 by yichan            #+#    #+#             */
-/*   Updated: 2024/04/07 20:59:34 by etlaw            ###   ########.fr       */
+/*   Updated: 2025/03/11 04:02:37 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	x_close(t_data *data)
 void	pause_game(t_data *data)
 {
 	if (data->pause == false)
-		mlx_mouse_show();
+		mlx_mouse_show(data->mlx, data->win);
 	else
-		mlx_mouse_hide();
+		mlx_mouse_hide(data->mlx, data->win);
 	data->pause = !(data->pause);
 }
 

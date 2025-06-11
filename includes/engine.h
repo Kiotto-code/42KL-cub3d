@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
+/*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 20:31:41 by yichan            #+#    #+#             */
-/*   Updated: 2024/04/07 20:59:34 by etlaw            ###   ########.fr       */
+/*   Updated: 2025/06/11 18:25:18 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_player		t_player;
 
 typedef struct s_vector
 {
-	double	x;
+	double	x; //change from double to int
 	double	y;
 }	t_vector;
 

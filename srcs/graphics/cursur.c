@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 22:29:00 by yichan            #+#    #+#             */
-/*   Updated: 2024/04/03 10:15:22 by yichan           ###   ########.fr       */
+/*   Updated: 2025/06/11 18:25:45 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,24 +91,12 @@ t_texture	resize_image(t_texture *original_texture, \
 {
 	t_texture		resized_image;
 	t_img			*original_image;
-	t_img			*img;
 	unsigned int	color;
 
 	color = 0;
 	original_image = original_texture->img;
 	resized_image.img = malloc(sizeof(t_img));
-	img = resized_image.img;
 	image_init(original_image, &resized_image, new_width, new_height);
 	rescale_pixel(&resized_image, original_texture, original_image, color);
 	return (resized_image);
 }
-
-// void	put_cursur(t_data *data)
-// {
-// 	t_texture	resized_img;
-
-// 	resized_img = resize_image(&data->cursur, CURSOR_SIZE, CURSOR_SIZE);
-// 	mlx_put_image_to_window(data->mlx, data->win, resized_img.img->ptr, \
-// 		(SCREEN_WIDTH - CURSOR_SIZE)/2, (SCREEN_HEIGHT - CURSOR_SIZE)/2);
-// 	free_1_texture(&resized_img);
-// }

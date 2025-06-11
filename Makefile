@@ -6,7 +6,7 @@
 #    By: yichan <yichan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/30 15:16:52 by yichan            #+#    #+#              #
-#    Updated: 2024/04/08 00:40:09 by yichan           ###   ########.fr        #
+#    Updated: 2025/03/11 03:54:28 by yichan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3
 CFLAGS += -fsanitize=address -g3
 # CFLAGS += -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
-MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
+# MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
 SRCS_PATH	= ./srcs/**
 OBJS_PATH	= ./objs
 LIBFT_PATH	= ./libft
@@ -27,6 +27,10 @@ OBJS 		= $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 # OBJS		= ${patsubst %.c, ${OBJS_PATH}/%.o, ${notdir ${SRCS}}}
 # OBJS		= ${patsubst %.c, ${OBJS_PATH}/%.o,  ${SRCS}}
 
+ifeq ($(UNAME), Linux)
+	MLXFLAGS	:= -Lmlx_linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
+	CFLAGS		+= -I/usr/include -Imlx_linux
+endif
 
 RESET		=	\033[0m
 GREEN		=	\033[38;5;46m
@@ -38,7 +42,7 @@ RED			=	\033[38;5;160m
 all			:	${NAME}
 
 ${NAME}		:	${OBJS}
-				make -C mlx
+				make -C mlxlinux
 				make -C ${LIBFT_PATH}
 				$(CC) ${CFLAGS} ${MLXFLAGS} $^  -lft -L${LIBFT_PATH} -o $@
 				@echo "The program name is $(RED)./$(NAME) $(RESET)"

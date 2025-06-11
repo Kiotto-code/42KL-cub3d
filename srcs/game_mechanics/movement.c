@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
+/*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:38:38 by yichan            #+#    #+#             */
-/*   Updated: 2024/04/02 22:45:08 by etlaw            ###   ########.fr       */
+/*   Updated: 2025/06/11 18:24:56 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,12 @@ void	check_mouse_movement(t_data *data)
 {
 	t_intvector	mouse;
 
-	mlx_mouse_get_pos(data->win, &mouse.x, &mouse.y);
+	mlx_mouse_get_pos(data->mlx, data->win, &mouse.x, &mouse.y);
 	if (mouse.x < data->mid_canvas.x)
 		data->player.dir = rotatevector(data->player.dir, \
 							(data->mid_canvas.x - mouse.x) * -ROTATE);
 	else if (mouse.x > data->mid_canvas.x)
 		data->player.dir = rotatevector(data->player.dir, \
 							(mouse.x - data->mid_canvas.x) * ROTATE);
-	mlx_mouse_move(data->win, data->mid_canvas.x, data->mid_canvas.y);
+	mlx_mouse_move(data->mlx, data->win, data->mid_canvas.x, data->mid_canvas.y);
 }
